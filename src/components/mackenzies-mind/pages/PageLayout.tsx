@@ -1,5 +1,5 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {Grid, Link, useTheme} from '@material-ui/core'
+import {Grid, Link, useMediaQuery, useTheme} from '@material-ui/core'
 import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../BlockContentLayoutContainer";
 import firebaseAnalyticsClient from "../../../utils/firebase/FirebaseAnalyticsClient";
@@ -10,6 +10,9 @@ import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutCon
 import FooterBlockContentLayoutContainer from "../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../BusinessCard";
 import PageContext from "../../page-context/PageContext";
+import bgImage from "../../the-drinkery/drinkery-background.jpg"
+import clsx from "clsx";
+import useCustomStyles from "./Styles";
 
 interface IProps {
     homePage: SanityTransformHwHomePage
@@ -18,6 +21,9 @@ interface IProps {
 const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     const location = useLocation();
     const theme = useTheme()
+    const classes = useCustomStyles({bgImage: bgImage})
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+
 
     const pageContext = useContext(PageContext)
 
@@ -42,9 +48,12 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                     content={props.homePage.headerContent.content}/>
             </Grid>}
         </Grid>
-        <Grid item container>
+        <Grid item container style={{ position: "relative", backgroundSize:"cover", backgroundPosition:"center",backgroundImage: `url(${bgImage})`}}>
+            <Grid container item
+                  className={clsx(xsDown ? classes.fullSection : classes.fullSection, classes.fullSectionOverlay)}>
+            </Grid>
             {
-                props.homePage.pageContent && <Grid container item>
+                props.homePage.pageContent && <Grid container item style={{zIndex: 1000}}>
                     <BlockContentLayoutContainer
                         homePage={props.homePage}
                         content={props.homePage.pageContent.content}/>

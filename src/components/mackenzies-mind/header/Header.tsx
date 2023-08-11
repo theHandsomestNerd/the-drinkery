@@ -7,6 +7,7 @@ import FilteredMenuItems from "../../filtered-menu-items/FilteredMenuItems";
 import clsx from "clsx";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import BusinessCard from "../../BusinessCard";
+import Logo from "../../transform-hw/logo/Logo";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -16,7 +17,7 @@ export const useStyles = makeStyles((theme: Theme) => ({
         height: theme.mixins.toolbar.height
     },
     opaque: {
-        backgroundColor: `${COLORS.LIGHTGRAY} !important`,
+        backgroundColor: `white !important`,
     }
 }))
 
@@ -37,7 +38,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
         <AppBar className={clsx({[classes.opaque]: true}, classes.root)}>{props.pageHeader?.title ?
             <Grid item xs={12} container justifyContent="space-between" alignItems='stretch' alignContent='center' spacing={mediaQueriesContext.mdDown ? 3 : 0}>
                 <Grid item container xs={3} sm={2} md={1} alignItems='center' alignContent='center'>
-                    <Typography variant='h4' color='textPrimary'  style={{...rainbow}}>Terrell</Typography><Typography variant='h4' color='primary' display='inline' style={{...rainbow}}>.</Typography>
+                    <Logo logoImageSrc={props.pageHeader.logoImageSrc} height={60} />
+                    {/*<Typography variant='h4' color='textPrimary'  style={{...rainbow}}>Terrell</Typography><Typography variant='h4' color='primary' display='inline' style={{...rainbow}}>.</Typography>*/}
                 </Grid>
                 <Grid item container xs={9} sm={10} md={11} justifyContent='space-between' alignItems='center' alignContent='center'>
                     {/*// @ts-ignore*/}

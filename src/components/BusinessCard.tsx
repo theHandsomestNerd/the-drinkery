@@ -77,15 +77,16 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
     React.useEffect(() => {
         //find the bio in pagecontent
-        const bioSection = pageContext.page?.pageContent.content.filter((content: any) => {
+        const bioSection = pageContext.page?.pageContent?.content.filter((content: any) => {
             if (content._type === "ResumeBioSection") {
                 return true
             }
             return false
         })
 
-        console.log("Found bio", bioSection[0])
-        setUserBio(bioSection[0])
+        // console.log("Found bio", bioSection[0])
+        if(bioSection && bioSection[0])
+            setUserBio(bioSection[0])
 
 
     }, [pageContext.page?.pageContent])

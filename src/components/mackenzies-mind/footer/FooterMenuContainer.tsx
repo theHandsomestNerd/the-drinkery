@@ -12,7 +12,7 @@ import Logo from "../../transform-hw/logo/Logo";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
-        color: theme.palette.text.secondary,
+        color: theme.palette.text.primary,
     }
 }))
 
@@ -50,13 +50,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 {props.pageFooterMenu?.logoImageSrc ?
                     <Logo isCenter logoImageSrc={props.pageFooterMenu.logoImageSrc} height={108}/> :
                     <Grid container item justifyContent='center'>
-                        <Typography component='div' variant='h2'
-                                    style={{...rainbow, color: "#383838"}}>James <Typography display='inline'
-                                                                                             style={{...rainbow,}}
-                                                                                             variant='h2'
-                                                                                             color='primary'>Terrell</Typography> Singleton<Typography
-                            display='inline' style={{...rainbow,}} variant='h2'
-                            color='primary'>.</Typography></Typography>
+                        <Logo logoImageSrc={props.pageFooterMenu?.logoImageSrc} height={100}/>
                     </Grid>}
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",
@@ -66,7 +60,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid item>
                         <Divider style={{
                             width: "70px",
-                            backgroundColor: "white"
+                            backgroundColor: "black"
                         }}/>
                     </Grid>
 

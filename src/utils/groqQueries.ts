@@ -96,6 +96,7 @@ const HOMEPAGE = `_type,
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
+                "teamList": teamList[]->,
                 "serviceAmenities": serviceAmenities[]->,
                 "skillsets": skillsets[]{
                     ...,

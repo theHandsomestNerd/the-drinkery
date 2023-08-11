@@ -8,7 +8,7 @@ import {FooterSectionType} from "../../BlockContentTypes";
 
 export const useStyles = makeStyles((theme: Theme) => ({
   root: {
-    backgroundColor: COLORS.DARK_GRAY,
+    backgroundColor: "white",
     // color: '#FDF3EB',
     // marginLeft: -1 * theme.spacing(1),
     // zIndex: 1000,

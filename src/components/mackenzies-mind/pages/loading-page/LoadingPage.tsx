@@ -2,7 +2,8 @@ import {CircularProgress, Grid, makeStyles, Theme, Typography, useTheme} from '@
 import React, {FunctionComponent} from 'react'
 import DigitalResumeTheme, {raleway} from "../../../../theme/DigitalResumeTheme";
 import useCustomStyles from "../Styles";
-import Logo from "../../../transform-hw/logo/Logo";
+import Logo from "../../../the-drinkery/drinkery-logo.png";
+import TheOtherSideLogo from "../../../the-drinkery/TheOtherSideLogo";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -19,7 +20,7 @@ const LoadingPage: FunctionComponent = (props) => {
     return (
         <Grid container item justifyContent='center' alignItems='center'
               alignContent='center'  className={globalClasses.fullscreen}>
-            <Logo isCenter height={200}/>
+            <TheOtherSideLogo isCenter height={100}/>
             <Grid item container justifyContent='center' spacing={3}>
                 <Grid item container justifyContent='center'>
                     <Typography align='center' variant='h6' style={{...raleway}}>Loading...</Typography>

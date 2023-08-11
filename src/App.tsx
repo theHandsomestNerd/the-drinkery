@@ -16,7 +16,7 @@ import TheOtherSide from "./components/the-drinkery/TheOtherSide";
 import TheDrinkerySpecials from "./components/the-drinkery/TheDrinkerySpecials";
 
 export enum RoutesEnum {
-    THN = "/the-handsomest-nerd-internal/:pageSlug",
+    THN = "/the-drinkery/:pageSlug",
     ERROR = '/error'
 }
 
@@ -52,13 +52,13 @@ function App() {
 
                                                 <Grid item>
                                                     <Routes>
-                                                        <Route path={"/theOtherSide"} element={<TheOtherSide />}/>
-                                                        <Route path={"/drinkerySpecials"} element={<TheDrinkerySpecials />}/>
+                                                        {/*<Route path={"/theOtherSide"} element={<TheOtherSide />}/>*/}
+                                                        {/*<Route path={"/drinkerySpecials"} element={<TheDrinkerySpecials />}/>*/}
                                                         <Route path={RoutesEnum.THN} element={<PageMux/>}/>
                                                         <Route path={RoutesEnum.ERROR} element={<FourOhFour/>}/>
                                                         <Route path={"/*"}
                                                                element={<Navigate
-                                                                   to={'/the-handsomest-nerd-internal/home'}/>}/>
+                                                                   to={'/the-drinkery/home'}/>}/>
                                                     </Routes>
                                                 </Grid>
                                             </Grid>

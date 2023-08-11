@@ -447,3 +447,50 @@ export type FooterSectionType = {
     name:string
     footerMenuRef: SanityMenuContainer
 }
+
+export type DrinkerySpecialsSectionType = {
+    name: string
+    contentTitle: string
+    subTitle: string
+    theSpecials: DrinkerySpecialType[]
+}
+
+export type TeamSectionType = {
+    name: string
+    contentPretitle: string
+    contentTitle: string
+    contentTexts: string[],
+    teamList: TeamMember[],
+}
+
+export type DrinkeryOtherSideSectionType = {
+    name: string
+    contentPretitle: string
+    contentTitle: string
+    isLink: boolean
+    isShowMenu: boolean
+    description: string
+    isLogo: boolean
+    theLiquors: string[]
+    // contentTexts: string[],
+    // teamList: TeamMember[],
+}
+
+
+export type TeamMember =  {
+    image: SanityImageAsset,
+    title: string,
+    firstName: string,
+    lastName: string,
+    homeCity:string,
+    homeState:string,
+    hobby:string,
+    faveDrinkToMake:string,
+}
+
+export type DrinkerySpecialType = {
+    name: string
+    title: string
+    content: string
+    imageSrc: SanityImageAsset
+}

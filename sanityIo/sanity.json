@@ -1,18 +1,18 @@
 {
   "root": true,
   "api": {
-    "projectId": "e5l5k4i5",
+    "projectId": "fd7w1ij4",
     "dataset": "production"
   },
   "project": {
-    "name": "The Handsomest Nerd Internal"
+    "name": "The Drinkery"
   },
   "__experimental_spaces": [
     {
       "name": "production",
       "title": "Production",
       "api": {
-        "projectId": "e5l5k4i5",
+        "projectId": "fd7w1ij4",
         "dataset": "production"
       }
     },
@@ -21,7 +21,7 @@
       "title": "Development",
       "default": true,
       "api": {
-        "projectId": "e5l5k4i5",
+        "projectId": "fd7w1ij4",
         "dataset": "development"
       }
     }

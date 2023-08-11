@@ -1,15 +1,21 @@
 import React, {FunctionComponent} from 'react'
-import {Grid, makeStyles, Typography, useMediaQuery, useTheme} from '@material-ui/core'
+import {Avatar, Grid, Link, makeStyles, Typography, useMediaQuery, useTheme} from '@material-ui/core'
 import clsx from "clsx";
+import {COLORS} from "../../theme/DigitalResumeTheme";
+import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
 import bgImage from "./drinkery-background.jpg"
 import TheOtherSideLogo from "./TheOtherSideLogo";
-import {DrinkerySpecialsSectionType} from "../BlockContentTypes";
+import openDoorSign from './Shutterstock_1025370412.png'
+import ashboy from "./ashboy-drinkery.jpg";
+import jt from "./jt-drinkery.jpg";
+import {DrinkerySpecialsSectionType, HowItWorksSectionType, TeamSectionType} from "../BlockContentTypes";
+import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Theme} from "@material-ui/core/styles";
 
 interface IProps {
     email?: string
-    sectionData: DrinkerySpecialsSectionType
+    sectionData: TeamSectionType
 }
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -21,14 +27,16 @@ export const useStyles = makeStyles((theme: Theme) => ({
     },
 }))
 
-const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
+
+const TheDrinkeryStaff: FunctionComponent<IProps> = (props) => {
     const classes = useCustomStyles({bgImage: bgImage})
-    const theme = useTheme()
     const theClasses = useStyles()
+    const theme = useTheme()
     const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
 
     return (
-        <Grid container item className={theClasses.preroot}
+        <Grid container className={theClasses.preroot}
               style={{position: "relative", color: "white"}}>
             {/*<CssFadeToColor*/}
             {/*    toColor={COLORS.LIGHTGRAY}*/}
@@ -38,29 +46,28 @@ const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
             {/*</Grid>*/}
             <Grid item container className={clsx(classes.fullSection)}
                   style={{
-                      position: 'absolute',
+                      // position: 'absolute',
                       // paddingBottom: smDown ? 0 : theme.spacing(10)
                   }}
                   justifyContent='center' alignItems='center'>
-                <Grid item container>
-                    <Grid container item justifyContent='center' style={{paddingBottom: theme.spacing(4)}}>
-                        <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
-                    </Grid>
+                <Grid container item justifyContent='center' style={{paddingTop: theme.spacing(2)}}>
                     <Grid container item justifyContent='center'>
-                        <Typography variant='h3'>{props.sectionData.contentTitle}</Typography>
+                        <Typography variant='body2' align='center' gutterBottom>{props.sectionData.contentTitle}</Typography>
                     </Grid>
-                    <Grid container item justifyContent='center'>
-                        <Typography variant='body1'>{props.sectionData.subTitle}</Typography>
+                    <Grid container item justifyContent='center' xs={12} sm={9} md={7} lg={5} xl={5}>
+                        {props.sectionData.teamList.map((teamMember, index)=><Grid key={index} item justifyContent='center' xs={6} sm={4} alignItems={'center'}
+                               alignContent='center'>
+                            <Grid container item justifyContent='center'>
+                                <Avatar src={urlFor(teamMember.image).url() || ""} variant='rounded' style={{
+                                    width: theme.spacing(18),
+                                    height: theme.spacing(18),
+                                }}/>
+                            </Grid>
+                            <Grid container item justifyContent='center'>
+                                <Typography variant='body1'>{teamMember.title}</Typography>
+                            </Grid>
+                        </Grid>)}
                     </Grid>
-                    {props.sectionData.theSpecials.map((specialData)=><Grid container item style={{paddingTop: theme.spacing(4)}}>
-                        <Grid container item justifyContent='center'>
-                            <Typography variant='h4'>{specialData.title}</Typography>
-                        </Grid>
-
-                        <Grid container item justifyContent='center'>
-                            <Typography variant='body2'>{specialData.content}</Typography>
-                        </Grid>
-                    </Grid>)}
                 </Grid>
                 {/*<Grid item container>*/}
                 {/*    <Grid container item style={{*/}
@@ -105,4 +112,4 @@ const TheDrinkerySpecials: FunctionComponent<IProps> = (props) => {
     )
 }
 
-export default TheDrinkerySpecials
+export default TheDrinkeryStaff

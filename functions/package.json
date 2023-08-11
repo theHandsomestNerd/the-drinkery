@@ -9,12 +9,12 @@
     "start": "npm run shell",
     "deploy": "npm run build && firebase deploy --only functions",
     "logs": "firebase functions:log",
-    "html": "cp ../build/index.html ./lib/functions/src"
+    "html": "cp ../build/index.html ./lib"
   },
   "engines": {
     "node": "14"
   },
-  "main": "lib/functions/src/index.js",
+  "main": "lib/index.js",
   "dependencies": {
     "@sanity/client": "^3.4.1",
     "@sanity/image-url": "^1.0.1",

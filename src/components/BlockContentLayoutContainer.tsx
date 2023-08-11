@@ -4,6 +4,8 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    DrinkeryOtherSideSectionType,
+    DrinkerySpecialsSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
     ResumeBioSectionType,
@@ -12,7 +14,7 @@ import {
     ResumeExperienceSectionType,
     ResumeFeedbackSectionType,
     ResumePortfolioSectionType,
-    ResumeSkillSectionType,
+    ResumeSkillSectionType, TeamSectionType,
     ThwAboutProprietorSectionType,
     ThwContactUsSectionType,
     ThwHeroContentSectionType,
@@ -51,6 +53,9 @@ import WebDevServicesSection from "./web-dev-site/WebDevServicesSection";
 import WebDevPortfolioSection from "./web-dev-site/WebDevPortfolioSection";
 import WebDevTestimonialsSection from "./web-dev-site/WebDevTestimonialsSection";
 import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
+import TheDrinkerySpecials from "./the-drinkery/TheDrinkerySpecials";
+import TheDrinkeryStaff from "./the-drinkery/TheDrinkeryStaff";
+import TheDrinkeryOtherSideSection from "./the-drinkery/TheDrinkeryOtherSideSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -321,6 +326,33 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         <Link id={"HOW_IT_WORKS"}><></></Link>
                         <WebDevHowItWorksSection
                             sectionData={webDevHowItWorksSection}
+                        />
+                    </Grid>
+                case 'DrinkerySpecialsSection':
+                    const drinkerySpecialsSection: DrinkerySpecialsSectionType = columnLayoutContainer
+
+                    return <Grid key={'specials-section'} container item xs={12}>
+                        <Link id={"SPECIALS"}><></></Link>
+                        <TheDrinkerySpecials
+                            sectionData={drinkerySpecialsSection}
+                        />
+                    </Grid>
+                case 'DrinkeryTeamSection':
+                    const drinkeryStaffSection: TeamSectionType = columnLayoutContainer
+
+                    return <Grid key={'staff-section'} container item xs={12}>
+                        <Link id={"STAFF_SECTION"}><></></Link>
+                        <TheDrinkeryStaff
+                            sectionData={drinkeryStaffSection}
+                        />
+                    </Grid>
+                case 'DrinkeryOtherSideSection':
+                    const drinkeryOtherSideSection: DrinkeryOtherSideSectionType = columnLayoutContainer
+
+                    return <Grid key={'other-side-section'} container item xs={12}>
+                        <Link id={"OTHER_SIDE_SECTION"}><></></Link>
+                        <TheDrinkeryOtherSideSection
+                            sectionData={drinkeryOtherSideSection}
                         />
                     </Grid>
                 default:

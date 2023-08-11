@@ -117,7 +117,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                 case 'DevelopmentFooterSection':
                     const developmentFooter: DevelopmentFooterSectionType = columnLayoutContainer
 
-                    return <MuiThemeProvider theme={WebDevSiteTheme}><Grid key={'BOTTOM_OF_PAGE_DEV'} container item
+                    return <MuiThemeProvider key={'dev-footer'} theme={WebDevSiteTheme}><Grid key={'BOTTOM_OF_PAGE_DEV'} container item
                                                                            xs={12}
                                                                            >
                         <Link id={"BOTTOM_OF_PAGE"}><></>
@@ -129,7 +129,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                 case 'FooterSection':
                     const footer: FooterSectionType = columnLayoutContainer
 
-                    return <MuiThemeProvider theme={DigitalResumeTheme}><Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
+                    return <MuiThemeProvider key={'footer'}  theme={DigitalResumeTheme}><Grid key={'BOTTOM_OF_PAGE'} container item xs={12}
                                                                               >
                         <Link id={"BOTTOM_OF_PAGE"}><></>
                         </Link>

@@ -64,7 +64,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                 case 'DevelopmentHeaderSection':
                     const developmentHeader: DevelopmentHeaderSectionType = columnLayoutContainer
 
-                    return <MuiThemeProvider theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
+                    return <MuiThemeProvider key={"dev-header-theme"} theme={WebDevSiteTheme}><Grid key={'TOP_OF_PAGE_DEV'} container item xs={12} style={{height: WebDevSiteTheme.mixins.toolbar.height}} alignContent='center' alignItems='center'>
                         <Link id={"TOP_OF_PAGE"}><></>
                         </Link>
                         <DevelopmentHeader
@@ -74,7 +74,7 @@ const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLay
                 case 'HeaderSection':
                     const header: HeaderSectionType = columnLayoutContainer
 
-                    return <MuiThemeProvider theme={DigitalResumeTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: DigitalResumeTheme.mixins.toolbar.height}}>
+                    return <MuiThemeProvider key={"header-theme"}  theme={DigitalResumeTheme}><Grid key={'TOP_OF_PAGE'} container item xs={12} style={{height: DigitalResumeTheme.mixins.toolbar.height}}>
                         <Link id={"TOP_OF_PAGE"}><></>
                         </Link>
                         <Header

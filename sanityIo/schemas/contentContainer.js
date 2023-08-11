@@ -49,7 +49,10 @@ export default {
         {name: 'transformContactUsSection', title: SanitySectionTitlesEnum.CONTACT_US,type: 'reference', to: [{type: 'transformContactUsSection'}]},
         {name: 'whySwitchSection', title: 'Image + 6 Bullets Section',type: 'reference', to: [{type: 'whySwitchSection'}]},
         {name: 'aboutAndaCardSection', title: 'Pink Image + Content',type: 'reference', to: [{type: 'aboutAndaCardSection'}]},
-        {name: 'cryptoInYourPocketSection', title: 'Image + 3 Bullets + Banner w/CTA',type: 'reference', to: [{type: 'cryptoInYourPocketSection'}]}
+        {name: 'cryptoInYourPocketSection', title: 'Image + 3 Bullets + Banner w/CTA',type: 'reference', to: [{type: 'cryptoInYourPocketSection'}]},
+        {name: 'drinkerySpecialsSection', title: 'Drinkery Specials Section', type: 'reference', to: [{type: 'DrinkerySpecialsSection'}]},
+        {name: 'drinkeryTeamSection', title: 'Drinkery Staff Section', type: 'reference', to: [{type: 'DrinkeryTeamSection'}]},
+        {name: 'drinkeryOtherSideSection', title: 'Drinkery Other Side Section', type: 'reference', to: [{type: 'DrinkeryOtherSideSection'}]}
         // {type: "column2BlockContent"},
         // {type: "heroImageNameCareer"},
         // {type: "aboutMe"},
