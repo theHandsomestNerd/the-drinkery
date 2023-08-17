@@ -52,7 +52,7 @@ const TheDrinkeryStaff: FunctionComponent<IProps> = (props) => {
                   justifyContent='center' alignItems='center'>
                 <Grid container item justifyContent='center' style={{paddingTop: theme.spacing(2)}}>
                     <Grid container item justifyContent='center'>
-                        <Typography variant='body2' align='center' gutterBottom>{props.sectionData.contentTitle}</Typography>
+                        <Typography variant='h6' align='center' gutterBottom>{props.sectionData.contentTitle}</Typography>
                     </Grid>
                     <Grid container item justifyContent='center' xs={12} sm={9} md={7} lg={5} xl={5}>
                         {props.sectionData.teamList.map((teamMember, index)=><Grid key={index} item justifyContent='center' xs={6} sm={4} alignItems={'center'}

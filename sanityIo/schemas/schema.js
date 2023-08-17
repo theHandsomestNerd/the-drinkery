@@ -77,6 +77,8 @@ import drinkeryTeamPage from "./team/DrinkeryTeamPage";
 import employeeShift from "./drinkery/employeeShift";
 import drinkerySpecial from "./drinkery/drinkerySpecial";
 import DrinkeryOtherSideSection from "./drinkery/DrinkeryOtherSideSection";
+import DrinkeryAlbumSection from "./drinkery/DrinkeryAlbumSection";
+import DrinkeryAlbumItem from "./drinkery/DrinkeryAlbumItem";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -164,6 +166,8 @@ export default createSchema({
         drinkeryTeamPage,
         employeeShift,
         drinkerySpecial,
-        DrinkeryOtherSideSection
+        DrinkeryOtherSideSection,
+        DrinkeryAlbumSection,
+        DrinkeryAlbumItem
     ]),
 })

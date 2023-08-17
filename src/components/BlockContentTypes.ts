@@ -475,7 +475,22 @@ export type DrinkeryOtherSideSectionType = {
     // contentTexts: string[],
     // teamList: TeamMember[],
 }
+export type DrinkeryPhotoType = {
+    imageSrc: SanityImageAsset
+    cols: number
+    title: string
+    subtitle: string
+}
 
+export type DrinkeryAlbumSectionType = {
+    name: string
+    isLogo:boolean
+    contentPretitle: string
+    contentTitle: string
+    imageList: DrinkeryPhotoType[]
+    // contentTexts: string[],
+    // teamList: TeamMember[],
+}
 
 export type TeamMember =  {
     image: SanityImageAsset,

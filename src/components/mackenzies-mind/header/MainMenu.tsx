@@ -7,6 +7,7 @@ import MainMenuSubMenu from "./MainMenuSubMenu";
 import {MainMenuAnchorType, SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
 import ModalContext from "../../snackbar-context/ModalContext";
 import Logo from "../../transform-hw/logo/Logo";
+import TheOtherSideLogo from "../../the-drinkery/TheOtherSideLogo";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -41,6 +42,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     const classes = useStyles(DigitalResumeTheme)
     const list = (anchor: MainMenuAnchorType) => (
         <Grid item
+              style={{backgroundColor:"white"}}
               role="presentation"
               onClick={toggleDrawer(anchor, false)}
               onKeyDown={toggleDrawer(anchor, false)}
@@ -70,7 +72,7 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                     height: "100%",
                                     margin: 0
                                 }} fullWidth>
-                                    <ListItemText secondary={menuItem.displayText}/>
+                                    <ListItemText primary={menuItem.displayText}/>
                                 </Button>
 
                             </ListItem>
@@ -92,13 +94,14 @@ const MainMenu: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             >
                 <Grid container alignItems='center' justifyContent='space-between'
                       style={{
+                          backgroundColor:"white",
                           paddingLeft: DigitalResumeTheme.spacing(4),
                           paddingRight: DigitalResumeTheme.spacing(6),
                       }}>
 
                     <Grid item xs={3}>
 
-                        {menu.logoImageSrc && <Logo logoImageSrc={menu.logoImageSrc}/>}
+                        {menu.logoImageSrc && <TheOtherSideLogo logoImageSrc={menu.logoImageSrc}/>}
                     </Grid>
                     <Grid item xs={1}><Button onClick={() => {
                         setIsDrawerOpen(false)

@@ -40,7 +40,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
         {/*</Grid>*/}
         <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
-            <BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>
+            {/*<BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>*/}
         </Grid>
         <Grid container item>
             {props.homePage.headerContent && <Grid container item>
@@ -70,7 +70,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
               alignContent='center'
               alignItems='center'
               style={{
-                  backgroundColor: "white",
+                  backgroundColor: "black",
                   position: "static",
                   bottom: 0,
                   padding: theme.spacing(1, 3, .5)
@@ -80,9 +80,9 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
             <Link
                 gutterBottom
                 href='https://thehandsomestnerd.com'
-                color='textPrimary'
+                color='textSecondary'
                 variant='subtitle2'>
-                © Copyright 2022
+                © Copyright 2023
                 TheHandsomestNerd, LLC. All Rights Reserved.
             </Link>
         </Grid>

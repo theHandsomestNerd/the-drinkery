@@ -4,6 +4,7 @@ import {Card, Grid, Link} from '@material-ui/core'
 import sanityClient from '../sanityClient'
 import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
+    DrinkeryAlbumSectionType,
     DrinkeryOtherSideSectionType,
     DrinkerySpecialsSectionType,
     HowItWorksSectionType,
@@ -56,6 +57,7 @@ import WebDevHowItWorksSection from "./web-dev-site/WebDevHowItWorksSection";
 import TheDrinkerySpecials from "./the-drinkery/TheDrinkerySpecials";
 import TheDrinkeryStaff from "./the-drinkery/TheDrinkeryStaff";
 import TheDrinkeryOtherSideSection from "./the-drinkery/TheDrinkeryOtherSideSection";
+import TheDrinkeryAlbumSection from "./the-drinkery/TheDrinkerAlbumSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -353,6 +355,15 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         <Link id={"OTHER_SIDE_SECTION"}><></></Link>
                         <TheDrinkeryOtherSideSection
                             sectionData={drinkeryOtherSideSection}
+                        />
+                    </Grid>
+                case 'DrinkeryAlbumSection':
+                    const drinkeryAlbumSection: DrinkeryAlbumSectionType = columnLayoutContainer
+
+                    return <Grid key={'album-section'} container item xs={12}>
+                        <Link id={"ALBUM_SECTION"}><></></Link>
+                        <TheDrinkeryAlbumSection
+                            sectionData={drinkeryAlbumSection}
                         />
                     </Grid>
                 default:

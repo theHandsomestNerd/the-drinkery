@@ -55,19 +55,19 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
     },[])
 
     return (
-        <Grid container direction="column" spacing={2} className={classes.root}>
+        <Grid item container direction="column" spacing={2} className={classes.root} >
             <Grid container item>
                 <Typography color='primary' variant="body2"
                             className={classes.menuTitle}>{menuGroupContents && menuGroupContents.menuGroupTitle}</Typography>
             </Grid>
-            <Grid item container>
-                <Grid container item xs={8} direction='column' spacing={2}>
+            <Grid item container >
+                <Grid container item xs={8} direction='column' spacing={2} >
                     {
                         menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
                             return (
                                 <Grid key={index} item>
                                     <Link href={menuLink.url} className={classes.footerLink}>
-                                        <Typography variant="body1" color='textSecondary' noWrap>
+                                        <Typography variant="body1" color='textPrimary' noWrap>
                                             {menuLink.displayText}
                                         </Typography>
                                     </Link>
@@ -78,7 +78,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
                     {
                         menuItemContents && <Grid item>
                             <Link href={menuItemContents.url} className={classes.footerLink}>
-                                <Typography variant="body1" color='textSecondary' noWrap>
+                                <Typography variant="body1" color='textPrimary' noWrap>
                                     {menuItemContents.displayText}
                                 </Typography>
                             </Link>

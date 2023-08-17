@@ -39,7 +39,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
-                            <Grid key={index} item xs={6}>
+                            <Grid key={index} item xs={12}>
                                 <FooterMenuGroup menuGroup={menuGroup}/>
                             </Grid>
                         )
@@ -75,7 +75,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid container item spacing={1} justifyContent='center'>
                         <Grid item>
                             <Typography color='inherit' align='center'
-                                        variant='subtitle1'>{pageContext.page?.phone}</Typography>
+                                        variant='body1'>{pageContext.page?.phone}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
@@ -87,7 +87,24 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 </Grid>
             </Grid>
             <Grid item container xs={12} md={4} alignContent='flex-start' spacing={2}>
+                <Grid container item>
+                <Grid item><Typography variant='h6'>Hours</Typography></Grid>
+                </Grid>
+                <Grid container item>
 
+                    <Grid item container><Typography color='primary'><b>Front</b></Typography></Grid>
+                    <Grid item container><Typography><b>Monday:</b> closed</Typography></Grid>
+                    <Grid item container><Typography><b>Tuesday & Wednesday:</b> 11am-12am</Typography></Grid>
+                    <Grid item container><Typography><b>Thursday-Sunday:</b> 11am-1am</Typography></Grid>
+
+                </Grid>
+                <Grid container item>
+                    <Grid item container><Typography  color='primary'><b>The Other Side</b></Typography></Grid>
+                    <Grid item container><Typography><b>Monday & Tuesday:</b> closed</Typography></Grid>
+                    <Grid item container><Typography><b>Wednesday & Thursday:</b> 7:30pm-12am</Typography></Grid>
+                    <Grid item container><Typography><b>Thursday-Sunday:</b> 7:30pm-1am</Typography></Grid>
+
+                </Grid>
             </Grid>
         </Grid>
     )

@@ -27,8 +27,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
     preroot: {
         minHeight: '221px',
         // backgroundColor: "black",
-        color: "white"
-        // paddingLeft: -theme.spacing(-5),
+        color: "white",
+        paddingTop: theme.spacing(4),
     },
 }))
 
@@ -49,9 +49,7 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
             {/*<Grid container item*/}
             {/*      className={clsx(xsDown ? classes.fullSection : classes.fullSection, classes.fullSectionOverlay)}>*/}
             {/*</Grid>*/}
-            {props.sectionData.isLogo && <Grid container item justifyContent='center'>
-                <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
-            </Grid>}
+
             <Grid item container className={clsx(classes.fullSection)}
                   justifyContent='center' alignItems='center'>
                 <Grid item container>
@@ -60,6 +58,9 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
                     }}>
                         <Grid container item spacing={2}>
                             <Grid item container>
+                                {props.sectionData.isLogo && <Grid container item justifyContent='center'>
+                                    <TheOtherSideLogo isCenter={true}></TheOtherSideLogo>
+                                </Grid>}
                                 <Grid container item justifyContent='center'>
                                     <Typography variant='h5'>{props.sectionData.contentTitle}</Typography>
                                 </Grid>
@@ -90,20 +91,20 @@ const TheDrinkeryOtherSideSection: FunctionComponent<IProps> = (props) => {
                                     </Link>
                                 </Grid>
                                 <Grid container item justifyContent='center'>
-                                    <Typography variant='body1'
+                                    <Typography variant='body2'
                                                 gutterBottom
-                                                style={{color: "white", maxWidth: "340px"}}
+                                                style={{color: "white", minWidth: "340px",maxWidth: "540px", fontWeight:400}}
                                                 align='center'>{props.sectionData.description}</Typography>
                                 </Grid>
                                 <Grid container item justifyContent='center'>
                                     {props.sectionData.isShowMenu && <Grid container item justifyContent='center'>
-                                        <Typography variant='body2'
-                                                    style={{color: "white", width: "340px"}} align='center'>
+                                        <Typography variant='h6' gutterBottom
+                                                    style={{color: "white", width: "340px", paddingTop: 24}} align='center'>
                                             Spirit Menu
                                         </Typography>
                                     </Grid>}
                                     {props.sectionData.isShowMenu && props.sectionData.theLiquors.map((aLiquor) => <Grid
-                                        container item justifyContent='center' xs={3}>
+                                        container item justifyContent='center' xs={4} sm={3}>
                                         <Typography variant='body1'
                                                     style={{color: "white", width: "340px"}} align='center'>
                                             {aLiquor}
