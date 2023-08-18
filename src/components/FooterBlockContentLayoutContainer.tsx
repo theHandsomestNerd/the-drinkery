@@ -60,9 +60,11 @@ import Header from "./mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import Footer from "./mackenzies-mind/footer/Footer";
 import WebDevFooter from "./web-dev-site/dev-footer/WebDevFooter";
+import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
 
 export type FooterBlockContentLayoutContainerProps = {
     content?: any,
+    homePage?:SanityTransformHwHomePage
 }
 
 const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLayoutContainerProps> = (props) => {
@@ -134,6 +136,7 @@ const FooterBlockContentLayoutContainer: FunctionComponent<FooterBlockContentLay
                         <Link id={"BOTTOM_OF_PAGE"}><></>
                         </Link>
                         <Footer
+                            homePage={props.homePage}
                             pageFooter={footer.footerMenuRef}
                         />
                     </Grid></MuiThemeProvider>

@@ -318,16 +318,15 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     return (<Grid item container>
             <Grid  item container justifyContent='flex-end' style={{padding: theme.spacing(2, 3)}}>
 
-                <Button variant='contained' color='primary' onClick={toggleDrawer(anchor, true)}>
-                    <Grid container spacing={2} alignItems='center'>
+                <Button variant='contained' color='primary' onClick={() => share(pageContext.page?.website ?? "")}>
+                    <Grid container spacing={2} alignItems='center' justifyContent='center'>
                         <Grid item>
-                            <Avatar style={{backgroundColor: "whitesmoke"}} src={urlFor(menu.logoImageSrc ?? "").url() ?? ""}/>
-
+                            <Avatar variant='square' style={{backgroundColor: "whitesmoke"}} src={urlFor(pageContext.page?.websiteQrCode ?? "").url() ?? ""}/>
                         </Grid>
-                        <Grid item>
-                            <Typography color='secondary' variant='button'>Contact Info</Typography>
+                        {/*<Grid item container justifyContent='center'>*/}
+                        {/*    <Typography align='center' color='secondary' variant='subtitle1'>Share</Typography>*/}
 
-                        </Grid>
+                        {/*</Grid>*/}
                     </Grid>
                 </Button>
             </Grid>

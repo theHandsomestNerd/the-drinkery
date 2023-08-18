@@ -92,7 +92,6 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                     </ImageList>
                     <Dialog onClick={()=>handleClose()} onClose={handleClose} aria-labelledby="simple-dialog-title" open={open}>
                         <img src={urlFor(selectedItem?.imageSrc).url() || ""} alt={selectedItem?.title}/>
-
                         <DialogTitle id="simple-dialog-title"
                                      style={{
                                          backgroundColor: 'black'

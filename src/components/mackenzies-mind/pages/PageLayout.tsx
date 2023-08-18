@@ -40,11 +40,12 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
         {/*</Grid>*/}
         <Grid container item style={{position: "fixed", bottom: 0, right: 0, zIndex: 9999}}>
-            {/*<BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>*/}
+            <BusinessCard menu={pageContext.page?.headerContent.content[0].headerMenuRef} anchor={'bottom'}/>
         </Grid>
         <Grid container item>
             {props.homePage.headerContent && <Grid container item>
                 <HeaderBlockContentLayoutContainer
+                    homePage={props.homePage}
                     content={props.homePage.headerContent.content}/>
             </Grid>}
         </Grid>
@@ -63,6 +64,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         <Grid container item>
             {props.homePage.footerContent && <Grid container item>
                 <FooterBlockContentLayoutContainer
+                    homePage={props.homePage}
                     content={props.homePage.footerContent.content}/>
             </Grid>}
         </Grid>

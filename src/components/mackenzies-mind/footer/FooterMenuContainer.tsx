@@ -8,6 +8,7 @@ import PageContext from "../../page-context/PageContext";
 import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
 import MailTo from "../../mail-to/MailTo";
 import Logo from "../../transform-hw/logo/Logo";
+import ResumeSocialMedia from "../../my-digital-resume/ResumeSocialMedia";
 
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -19,6 +20,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 interface IProps {
     pageFooterMenu?: SanityMenuContainer
+    homePage?:SanityTransformHwHomePage
+
     updateIsLoading?: (value: boolean) => void
 }
 
@@ -52,6 +55,9 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid container item justifyContent='center'>
                         <Logo logoImageSrc={props.pageFooterMenu?.logoImageSrc} height={100}/>
                     </Grid>}
+                <Grid container item>
+                    <ResumeSocialMedia homePage={props.homePage} />
+                </Grid>
                 <Grid item container justifyContent='center' style={{
                     paddingBottom: "16px",
                     marginTop: "12px",

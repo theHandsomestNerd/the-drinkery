@@ -85,7 +85,7 @@ export enum COLORS {
     MEDIUMGRAY = "#BCB9B0",
     DARKGRAY = "#43424A",
     TRANSPARENTDARKGRAY = "rgba(67,66,74,0.78)",
-    AQUA="#12b3be"
+    AQUA = "#12b3be"
 }
 
 const DigitalResumeTheme = createTheme({
@@ -132,9 +132,9 @@ const DigitalResumeTheme = createTheme({
         }
     },
     mixins: {
-      toolbar: {
-          height: "55px"
-      }
+        toolbar: {
+            height: "55px"
+        }
     },
     typography: {
         fontFamily: fonts,
@@ -256,15 +256,15 @@ const DigitalResumeTheme = createTheme({
             }
         },
         MuiOutlinedInput: {
-            root:{
+            root: {
                 // borderRadius: 0
             }
         },
-        MuiFormLabel:{
-          root:{
-              color: "#383838",
-              paddingTop: "4px",
-          }
+        MuiFormLabel: {
+            root: {
+                color: "#383838",
+                paddingTop: "4px",
+            }
         },
         MuiFilledInput: {
             root: {
@@ -364,6 +364,11 @@ const DigitalResumeTheme = createTheme({
                 paddingBottom: "16px",
                 paddingLeft: "64px",
                 paddingRight: "64px",
+            }
+        },
+        MuiDialog: {
+            paper: {
+                border: "1px solid whitesmoke"
             }
         },
         MuiCircularProgress: {

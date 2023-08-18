@@ -39,6 +39,8 @@ export const useStyles = makeStyles((theme: Theme) => ({
 
 interface IProps {
   pageFooter?: SanityMenuContainer
+  homePage?:SanityTransformHwHomePage
+
   footerMenuSlug?:string
   updateIsLoading?: (value:boolean) => void
 }
@@ -50,7 +52,7 @@ const Footer: FunctionComponent<IProps> = (props:IProps) => {
     <Grid container className={classes.root}>
       <Grid container justifyContent="flex-start">
         <Grid item xs={12}>
-          {props.pageFooter && <FooterMenuContainer pageFooterMenu={props.pageFooter} updateIsLoading={props.updateIsLoading}
+          {props.pageFooter && <FooterMenuContainer homePage={props.homePage} pageFooterMenu={props.pageFooter} updateIsLoading={props.updateIsLoading}
                                 />}
         </Grid>
       </Grid>
