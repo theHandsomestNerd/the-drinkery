@@ -44,17 +44,17 @@ const ResumeBio: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item xs={3}>
                     <Typography gutterBottom variant='body1' style={{textTransform: "uppercase"}}>Phone</Typography>
                 </Grid>
-                <Grid item xs={9}><Typography gutterBottom variant='body1'>{props.homePage.phone}</Typography></Grid>
+                <Grid item xs={9}><Typography gutterBottom variant='body1'>{props.homePage.businessContact.phone}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
                 <Grid item xs={3}><Typography gutterBottom variant='body1'
                                               style={{textTransform: "uppercase"}}>Email</Typography></Grid>
-                <Grid item xs={9}><Typography gutterBottom variant='body1'>{props.homePage.email}</Typography></Grid>
+                <Grid item xs={9}><Typography gutterBottom variant='body1'>{props.homePage.businessContact.email}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
                 <Grid item xs={3}><Typography gutterBottom variant='body1'
                                               style={{textTransform: "uppercase"}}>MAIL</Typography></Grid>
-                <Grid item xs={9}><Typography noWrap gutterBottom variant='body1'>{props.homePage.address}</Typography></Grid>
+                <Grid item xs={9}><Typography noWrap gutterBottom variant='body1'>{props.homePage.businessContact.address}</Typography></Grid>
             </Grid>
             <Grid container item xs={11} sm={12}>
                 <ResumeSocialMedia homePage={props.homePage} />

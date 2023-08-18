@@ -32,12 +32,24 @@ export type SanityTransformHwHomePage = {
   headerContent?: any
   footerContent?: any
   pageContent?: any
+  businessContact: SanityBusinessContact
   servicesAvailable?: ThwServiceItemNoRefType[]
   structuredData?: any
-  address?: string
   website?: string
   websiteQrCode?: SanityImageSource
+  androidPlayStoreLink?: string
+  androidPlayStoreIconSrc?: string
+  appStoreLink?: string
+  appStoreIconSrc?: string
+  fdicDisclaimer?: string
+  fdicImage?: string
+  isUnderConstruction?: boolean
+  underConstructionPageRef?: SanityRef
+}
+
+export type SanityBusinessContact = {
   email?: string
+  address?: string
   phone?: string
   facebook?: string
   facebookIconSrc?: SanityImageSource
@@ -49,14 +61,6 @@ export type SanityTransformHwHomePage = {
   instagramIconSrc?: SanityImageSource
   github?: string
   githubIconSrc?: SanityImageSource
-  androidPlayStoreLink?: string
-  androidPlayStoreIconSrc?: string
-  appStoreLink?: string
-  appStoreIconSrc?: string
-  fdicDisclaimer?: string
-  fdicImage?: string
-  isUnderConstruction?: boolean
-  underConstructionPageRef?: SanityRef
 }
 
 export type SanityUnderConstructionPageType = {

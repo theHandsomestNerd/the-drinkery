@@ -48,9 +48,9 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                     {/*<Typography variant='h4' color='textPrimary'  style={{...rainbow}}>Terrell</Typography><Typography variant='h4' color='primary' display='inline' style={{...rainbow}}>.</Typography>*/}
                 </Grid>
                 <Grid container item xs={5} sm={3} alignContent='center' alignItems='center' justifyContent={mediaQueriesContext.xsDown ? 'center':"flex-start"}>
-                    <Link href={`https://facebook.com/${props.homePage?.facebook}`}><Facebook color='primary'/></Link>
-                    <Link href={`https://instagram.com/${props.homePage?.instagram}`}><Instagram  color='primary'/></Link>
-                    <Link href={`https://twitter.com/${props.homePage?.twitter}`}><Twitter  color='primary'/></Link>
+                    <Link href={`https://facebook.com/${props.homePage?.businessContact.facebook}`}><Facebook color='primary'/></Link>
+                    <Link href={`https://instagram.com/${props.homePage?.businessContact.instagram}`}><Instagram  color='primary'/></Link>
+                    <Link href={`https://twitter.com/${props.homePage?.businessContact.twitter}`}><Twitter  color='primary'/></Link>
                     {/*<ResumeSocialMedia homePage={props.homePage} />*/}
                 </Grid>
                 <Grid item container xs={2} sm={6} md={7} justifyContent='space-between' alignItems='center' alignContent='center'>

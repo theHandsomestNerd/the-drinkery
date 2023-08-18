@@ -90,6 +90,7 @@ const HOMEPAGE = `_type,
                },
             }
           },
+          "businessContact": businessContactRef->,
           pageContent {
             "content": content[]->{
                 ...,

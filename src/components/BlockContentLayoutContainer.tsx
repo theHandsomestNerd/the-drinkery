@@ -58,10 +58,11 @@ import TheDrinkerySpecials from "./the-drinkery/TheDrinkerySpecials";
 import TheDrinkeryStaff from "./the-drinkery/TheDrinkeryStaff";
 import TheDrinkeryOtherSideSection from "./the-drinkery/TheDrinkeryOtherSideSection";
 import TheDrinkeryAlbumSection from "./the-drinkery/TheDrinkerAlbumSection";
+import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
-    homePage: SanityHomePage
+    homePage: SanityTransformHwHomePage
 }
 
 const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainerProps> = (props) => {

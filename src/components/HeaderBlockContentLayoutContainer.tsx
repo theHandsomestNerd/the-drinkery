@@ -10,10 +10,11 @@ import DevelopmentHeader from "./mackenzies-mind/header/DevelopmentHeader";
 import Header from "./mackenzies-mind/header/Header";
 import WebDevSiteTheme from "../theme/WebDevSiteTheme";
 import {SanityHomePage} from "./block-content-ui/static-pages/cmsStaticPagesClient";
+import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
 
 export type HeaderBlockContentLayoutContainerProps = {
     content?: any,
-    homePage?: SanityHomePage
+    homePage?: SanityTransformHwHomePage
 }
 
 const HeaderBlockContentLayoutContainer: FunctionComponent<HeaderBlockContentLayoutContainerProps> = (props) => {
