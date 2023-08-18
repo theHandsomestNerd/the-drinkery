@@ -71,6 +71,9 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                 <Grid container item justifyContent='center'>
                     <Typography variant='h5'>{props.sectionData.contentTitle}</Typography>
                 </Grid>
+                <Grid container item justifyContent='center'>
+                    <Typography align='center' variant='body2' style={{maxWidth:800, fontWeight:400}}>{props.sectionData.contentText}</Typography>
+                </Grid>
                 <Grid item container justifyContent='center'>
                     <ImageList rowHeight={500} className={theClasses.imageList} cols={xsDown?2:3}>
                         {props.sectionData.imageList.map((item, index) => (

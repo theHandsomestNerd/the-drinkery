@@ -14,6 +14,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'contentText',
+            title: 'Content',
+            type: 'text',
+        },
+        {
             name: 'isLogo',
             title: 'Show Logo in this section',
             type: 'boolean',
