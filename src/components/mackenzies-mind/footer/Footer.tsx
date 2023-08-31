@@ -10,30 +10,12 @@ export const useStyles = makeStyles((theme: Theme) => ({
   root: {
     backgroundColor: "white",
     // color: '#FDF3EB',
-    // marginLeft: -1 * theme.spacing(1),
+    marginTop: theme.spacing(1),
     // zIndex: 1000,
     padding: theme.spacing(4),
     '& .MuiFormLabel-root': {
       color: 'white',
     },
-  },
-  emailContainer: {
-    height: '72px',
-  },
-  columnHeader: {
-    fontWeight: 500,
-    color: '#FDF3EB',
-    marginBottom: '16px',
-  },
-  footerLink: {
-    marginBottom: '8px',
-  },
-  newsletterForm: {
-    maxWidth: '370px',
-  },
-  emailInputProps: {
-    borderColor: '#FDF3EB',
-    color: '#FDF3EB !important',
   },
 }))
 

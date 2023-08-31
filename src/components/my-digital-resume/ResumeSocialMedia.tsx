@@ -26,33 +26,33 @@ const ResumeSocialMedia: FunctionComponent<IProps> = (props: IProps) => {
     return (<Grid item xs={12} container alignItems='center' justifyContent='center'
                   spacing={props.spacing ? props.spacing : 0}>
         <Grid item>
-            {props.homePage?.businessContact.facebook && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+            {props.homePage?.businessContact?.facebook && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                 <IconButton color={props.color ?? 'primary'}
-                            href={`https://facebook.com/${props.homePage?.businessContact.facebook}`}><Facebook/></IconButton>
+                            href={`https://facebook.com/${props.homePage?.businessContact?.facebook}`}><Facebook/></IconButton>
             </Grid>}
         </Grid>
         <Grid item>
-            {props.homePage?.businessContact.twitter && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+            {props.homePage?.businessContact?.twitter && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                 <IconButton color={props.color ?? 'primary'}
-                            href={`https://twitter.com/${props.homePage?.businessContact.twitter}`}><Twitter/></IconButton>
+                            href={`https://twitter.com/${props.homePage?.businessContact?.twitter}`}><Twitter/></IconButton>
             </Grid>}
         </Grid>
         <Grid item>
-            {props.homePage?.businessContact.instagram && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+            {props.homePage?.businessContact?.instagram && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                 <IconButton color={props.color ?? 'primary'}
-                            href={`https://instagram.com/${props.homePage?.businessContact.instagram}`}><Instagram/></IconButton>
+                            href={`https://instagram.com/${props.homePage?.businessContact?.instagram}`}><Instagram/></IconButton>
             </Grid>}
         </Grid>
         <Grid item>
-            {props.homePage?.businessContact.linkedIn && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+            {props.homePage?.businessContact?.linkedIn && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                 <IconButton color={props.color ?? 'primary'}
-                            href={`https://linkedIn.com/in/${props.homePage?.businessContact.linkedIn}`}><LinkedIn/></IconButton>
+                            href={`https://linkedIn.com/in/${props.homePage?.businessContact?.linkedIn}`}><LinkedIn/></IconButton>
             </Grid>}
         </Grid>
         <Grid item>
-            {props.homePage?.businessContact.github && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
+            {props.homePage?.businessContact?.github && <Grid item className={clsx({[classes.buttonBackground]: props.bgColor})}>
                 <IconButton color={props.color ?? 'primary'}
-                            href={`https://github.com/${props.homePage?.businessContact.github}`}><GitHub/></IconButton>
+                            href={`https://github.com/${props.homePage?.businessContact?.github}`}><GitHub/></IconButton>
             </Grid>}
         </Grid>
     </Grid>)

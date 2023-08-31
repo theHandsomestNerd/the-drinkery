@@ -451,8 +451,12 @@ export type FooterSectionType = {
 export type DrinkerySpecialsSectionType = {
     name: string
     contentTitle: string
+    contentText: string
+    disclaimer: string
     subTitle: string
     theSpecials: DrinkerySpecialType[]
+    imageSrc: SanityImageAsset
+    imageSrcAltText: string
 }
 
 export type TeamSectionType = {

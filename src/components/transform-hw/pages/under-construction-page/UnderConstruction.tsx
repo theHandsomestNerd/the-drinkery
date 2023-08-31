@@ -11,6 +11,7 @@ import SubmitEmail from "../SubmitEmail";
 import Logo from "../../logo/Logo";
 import {urlFor} from "../../../block-content-ui/static-pages/cmsStaticPagesClient";
 import MailTo from "../../../mail-to/MailTo";
+import TheOtherSideLogo from "../../../the-drinkery/TheOtherSideLogo";
 
 interface IProps {
     email?: string
@@ -49,7 +50,7 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
 
     return (
         <Grid container className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullScreenImage)}
-              style={{position: "relative"}}>
+              >
             <CssFadeToColor
                 toColor={COLORS.LIGHTGRAY}
                 isResponsive/>
@@ -57,17 +58,13 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                   className={clsx(xsDown ? classes.fullscreenPlus : classes.fullscreen, classes.fullscreenWhiteOverlay)}>
             </Grid>
             <Grid item container className={clsx(classes.fullscreen)}
-                  style={{
-                      position: 'absolute',
-                      paddingBottom: smDown ? 0 : theme.spacing(10)
-                  }}
                   justifyContent='center' alignItems='center'>
+                {<Grid container item xs={11}  justifyContent='center' >
+                    <TheOtherSideLogo isCenter height={250} />
+                </Grid>}
                 {cmsPageData?.contentTitle && cmsPageData?.contentTitle.length > 0 && <Grid container item xs={11} className={classes.spacer} justifyContent='center'>
                     <Typography variant={smDown ? 'h2' : 'h1'} align='center'
-                                color='textSecondary'>{cmsPageData?.contentTitle}</Typography>
-                </Grid>}
-                {<Grid container item xs={11} className={classes.spacer} justifyContent='center' style={{marginBottom: smDown? theme.spacing(15):0}}>
-                    <Logo isCenter={smDown} height={250}/>
+                                color='primary'>{cmsPageData?.contentTitle}</Typography>
                 </Grid>}
                 <Grid xs={10} container item justifyContent='center' className={classes.spacer}>
                     <CountdownToLaunch launchDate={releaseDate ?? new Date(Date.now() + 2000000000)}/>
@@ -79,13 +76,17 @@ const UnderConstruction: FunctionComponent<IProps> = (props) => {
                                         align='center' style={{...raleway}}>{cmsPageData?.contentText}</Typography>
 
                         </Grid>
+                        {<Grid container item xs={11} className={classes.spacer} justifyContent='center'>
+                            <Typography variant={'body1'} align='center'
+                                        color='primary'>{cmsPageData?.subscribeText}</Typography>
+                        </Grid>}
                     </Grid>
                     <Grid container item justifyContent='center'>
-                        <Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>
-                            <SubmitEmail emailFieldText={cmsPageData?.emailFieldText ?? ""}
-                                         emailButtonText={cmsPageData?.emailButtonText ?? ""}
-                                         subscribeText={cmsPageData?.subscribeText ?? ""}/>
-                        </Grid>
+                        {/*<Grid container item justifyContent='center' style={{marginTop: theme.spacing(5.75)}}>*/}
+                        {/*    <SubmitEmail emailFieldText={cmsPageData?.emailFieldText ?? ""}*/}
+                        {/*                 emailButtonText={cmsPageData?.emailButtonText ?? ""}*/}
+                        {/*                 subscribeText={cmsPageData?.subscribeText ?? ""}/>*/}
+                        {/*</Grid>*/}
                         <Grid item container style={{
                             // backgroundColor: xsDown ? theme.palette.background.default : "transparent",
                             // position: 'static',

@@ -75,19 +75,19 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     <Grid container item spacing={1} justifyContent='center'>
                         <Grid item>
                             <Typography color='inherit' style={{width: "180px"}} align='center' variant='subtitle1'
-                                        gutterBottom>{pageContext.page?.businessContact.address}</Typography>
+                                        gutterBottom>{pageContext.page?.businessContact?.address}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         <Grid item>
                             <Typography color='inherit' align='center'
-                                        variant='body1'>{pageContext.page?.businessContact.phone}</Typography>
+                                        variant='body1'>{pageContext.page?.businessContact?.phone}</Typography>
                         </Grid>
                     </Grid>
                     <Grid container item spacing={1} justifyContent='center'>
                         {<Grid item>
-                            <MailTo color={"#383838"} email={pageContext.page?.businessContact.email ?? ""} subject={"Information Request"}
-                                    body={""}><Typography color='inherit'>{pageContext.page?.businessContact.email}</Typography></MailTo>
+                            <MailTo color={theme.palette.text.primary} email={pageContext.page?.businessContact?.email ?? ""} subject={"Information Request"}
+                                    body={""}><Typography color='inherit'>{pageContext.page?.businessContact?.email}</Typography></MailTo>
                         </Grid>}
                     </Grid>
                 </Grid>
@@ -97,19 +97,16 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                 <Grid item><Typography variant='h6'>Hours</Typography></Grid>
                 </Grid>
                 <Grid container item>
-
                     <Grid item container><Typography color='primary'><b>Front</b></Typography></Grid>
                     <Grid item container><Typography><b>Monday:</b> closed</Typography></Grid>
-                    <Grid item container><Typography><b>Tuesday & Wednesday:</b> 11am-12am</Typography></Grid>
-                    <Grid item container><Typography><b>Thursday-Sunday:</b> 11am-1am</Typography></Grid>
-
+                    <Grid item container><Typography><b>Tuesday & Wednesday:</b> 4pm-12am</Typography></Grid>
+                    <Grid item container><Typography><b>Thursday-Sunday:</b> 2pm-1am</Typography></Grid>
                 </Grid>
                 <Grid container item>
                     <Grid item container><Typography  color='primary'><b>The Other Side</b></Typography></Grid>
                     <Grid item container><Typography><b>Monday & Tuesday:</b> closed</Typography></Grid>
-                    <Grid item container><Typography><b>Wednesday & Thursday:</b> 7:30pm-12am</Typography></Grid>
-                    <Grid item container><Typography><b>Thursday-Sunday:</b> 7:30pm-1am</Typography></Grid>
-
+                    <Grid item container><Typography><b>Wednesday:</b> 7pm-12am</Typography></Grid>
+                    <Grid item container><Typography><b>Thursday-Sunday:</b> 7pm-1230am</Typography></Grid>
                 </Grid>
             </Grid>
         </Grid>

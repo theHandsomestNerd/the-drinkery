@@ -23,7 +23,6 @@ export default {
             title: 'Show Logo in this section',
             type: 'boolean',
         },
-
         {
             name: 'imageList',
             title: 'Image List',

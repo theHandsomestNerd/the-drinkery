@@ -10,6 +10,7 @@ import SnackbarContext from "../modal-context/SnackbarContext";
 import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
 import QrCodeContext from "./QrCodeContext";
 import QRCode from "react-qr-code";
+import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 
 type IProps = {};
 
@@ -28,16 +29,20 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
         setQrCodeValue(url)
         const snack = <Grid
             container
-            style={{minWidth: "200px"}}
+            // style={{minWidth: "200px"}}
         >
-            <div style={{ height: "256px",width: "256px" }}>
+            <Grid container item justifyContent='center'>
                 {url && <QRCode
                     size={256}
                     style={{height: "auto", maxWidth: "100%", width: "100%"}}
                     value={url}
                     viewBox={`0 0 256 256`}
                 />}
-        </div>
+        </Grid>
+            <Grid container item justifyContent='center' style={{marginTop: DigitalResumeTheme.spacing(2)}}>
+
+            <Typography variant='h6'>Share</Typography>
+            </Grid>
         </Grid>
 
         snackbarContext.openSnackbar && await snackbarContext.openSnackbar(snack)

@@ -151,7 +151,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <Typography variant='body2'>{pageContext.page?.businessContact.phone}</Typography>
+                                <Typography variant='body2'>{pageContext.page?.businessContact?.phone}</Typography>
 
                             </Grid>
                         </Grid>
@@ -164,10 +164,10 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
                         </Grid>
                         <Grid item xs={9} container justifyContent='flex-end'>
-                            <MailTo color={theme.palette.primary.main} email={pageContext.page?.businessContact.email ?? ""}
+                            <MailTo color={theme.palette.primary.main} email={pageContext.page?.businessContact?.email ?? ""}
                                     subject={"Information Request"} body={""}>
                                 <Typography color='textPrimary' variant='button'
-                                            align='right'>{pageContext.page?.businessContact.email}</Typography>
+                                            align='right'>{pageContext.page?.businessContact?.email}</Typography>
                             </MailTo>
                             {/*<Typography variant='body2'>{pageContext.page?.email}</Typography>*/}
                         </Grid>

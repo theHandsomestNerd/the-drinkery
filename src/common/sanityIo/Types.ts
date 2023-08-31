@@ -45,6 +45,11 @@ export type SanityTransformHwHomePage = {
   fdicImage?: string
   isUnderConstruction?: boolean
   underConstructionPageRef?: SanityRef
+  hoursOfOperation?: SanityGroupSchedule
+}
+
+export type SanityGroupSchedule = {
+
 }
 
 export type SanityBusinessContact = {

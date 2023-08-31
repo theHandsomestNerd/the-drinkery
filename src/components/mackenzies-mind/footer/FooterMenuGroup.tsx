@@ -1,9 +1,11 @@
-import React, {FunctionComponent, useEffect, useState} from 'react'
+import React, {FunctionComponent, useContext, useEffect, useState} from 'react'
 import {makeStyles, Theme} from '@material-ui/core/styles'
 
-import {Grid, Link, Typography} from '@material-ui/core'
+import {Button, Grid, Link, Typography} from '@material-ui/core'
 import DigitalResumeTheme from "../../../theme/DigitalResumeTheme";
 import {SanityMenuGroup, SanityMenuItem} from "../../../common/sanityIo/Types";
+import MediaQueriesContext from "../../media-queries-context/MediaQueriesContext";
+import LoadingButton from "../../loading-button/LoadingButton";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -45,7 +47,7 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
 
     const [menuGroupContents, setMenuGroupContents] = useState<SanityMenuGroup>()
     const [menuItemContents, setMenuItemContents] = useState<SanityMenuItem>()
-
+    const mediaQueryContext = useContext(MediaQueriesContext)
     useEffect(() => {
         if (menuGroup._type === "menuGroup") {
             setMenuGroupContents(menuGroup)
@@ -56,32 +58,36 @@ const FooterMenuGroup: FunctionComponent<LandingPagesFooterMenuGroupProps> = ({m
 
     return (
         <Grid item container direction="column" spacing={2} className={classes.root} >
-            <Grid container item>
+            {menuGroupContents?.menuGroupTitle && <Grid container item>
                 <Typography color='primary' variant="body2"
                             className={classes.menuTitle}>{menuGroupContents && menuGroupContents.menuGroupTitle}</Typography>
-            </Grid>
+            </Grid>}
             <Grid item container >
-                <Grid container item xs={8} direction='column' spacing={2} >
+                <Grid container item spacing={2}  >
                     {
-                        menuGroup?.links && menuGroup.links.map( (menuLink:any, index: any) => {
+                        menuGroup?.links && menuGroup.links.map( (menuLink, index: any) => {
                             return (
-                                <Grid key={index} item>
-                                    <Link href={menuLink.url} className={classes.footerLink}>
+                                <Grid key={index} item container>
+                                    {!menuLink.isContainedButton && !menuLink.isOutlinedButton ? <Link href={menuLink.url}>
                                         <Typography variant="body1" color='textPrimary' noWrap>
                                             {menuLink.displayText}
                                         </Typography>
-                                    </Link>
+                                    </Link>:<Button variant={menuLink.isContainedButton?'contained':'outlined'} href={menuLink.url}><Typography variant="body1" color='textPrimary' noWrap>
+                                        {menuLink.displayText}{menuLink.isContainedButton}{menuLink.isOutlinedButton}
+                                    </Typography></Button>}
                                 </Grid>
                             )
                         })
                     }
                     {
-                        menuItemContents && <Grid item>
-                            <Link href={menuItemContents.url} className={classes.footerLink}>
+                        menuItemContents && <Grid item container justifyContent={mediaQueryContext.mdDown && (menuItemContents.isContainedButton || menuItemContents.isOutlinedButton)?'center':'flex-start'}>
+                            {!menuItemContents.isContainedButton && !menuItemContents.isOutlinedButton ? <Link href={menuItemContents.url}>
                                 <Typography variant="body1" color='textPrimary' noWrap>
                                     {menuItemContents.displayText}
                                 </Typography>
-                            </Link>
+                            </Link>:<LoadingButton variant={menuItemContents.isContainedButton?'contained':'outlined'} href={menuItemContents.url}><Typography variant="body1" color='textPrimary' noWrap>
+                                {menuItemContents.displayText}{menuItemContents.isContainedButton}{menuItemContents.isOutlinedButton}
+                            </Typography></LoadingButton>}
                         </Grid>
                     }
                     {!menuGroupContents && !menuItemContents && <></>}

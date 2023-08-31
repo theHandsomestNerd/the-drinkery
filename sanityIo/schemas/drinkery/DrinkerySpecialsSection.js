@@ -15,6 +15,29 @@ export default {
             type: 'string',
         },
         {
+            name: 'imageSrc',
+            title: 'Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
+            name: 'imageSrcAltText',
+            title: 'Image Alt Text',
+            type: 'string'
+        },
+        {
+            name: 'contentText',
+            title: 'Content Text',
+            type: 'text',
+        },
+        {
+            name: 'disclaimer',
+            title: 'Disclaimer',
+            type: 'text',
+        },
+        {
             name: 'subTitle',
             title: 'Small Title',
             type: 'string',

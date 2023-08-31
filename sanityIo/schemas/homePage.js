@@ -91,6 +91,12 @@ export default {
             ]
         },
         {
+            name: 'hoursOfOperation',
+            title: 'Hours of Operation',
+            type: "array",
+            of: [{type: "scheduleGroup"}]
+        },
+        {
             name: 'slug',
             title: 'Slug',
             type: 'slug',

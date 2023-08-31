@@ -4,8 +4,6 @@ import {SanityTransformHwHomePage} from "../../../common/sanityIo/Types";
 import BlockContentLayoutContainer from "../../BlockContentLayoutContainer";
 import firebaseAnalyticsClient from "../../../utils/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
-import Footer from "../footer/Footer";
-import Header from "../header/Header";
 import HeaderBlockContentLayoutContainer from "../../HeaderBlockContentLayoutContainer";
 import FooterBlockContentLayoutContainer from "../../FooterBlockContentLayoutContainer";
 import BusinessCard from "../../BusinessCard";
@@ -31,7 +29,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
         props.homePage.title && firebaseAnalyticsClient.analyticsPageView(
             location.pathname,
             location.search,
-            `${props.homePage.title} | The Handsomest Nerd`,
+            `${!props.homePage.isUnderConstruction ? props.homePage.title:'Coming Soon'} | The Drinkery Baltimore`,
         );
     }, []);
 
@@ -77,9 +75,9 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
                   bottom: 0,
                   padding: theme.spacing(1, 3, .5)
               }}
-            // xs={11}
         >
             <Link
+                style={{zIndex:9999}}
                 gutterBottom
                 href='https://thehandsomestnerd.com'
                 color='textSecondary'
