@@ -12,8 +12,7 @@ import ModalProvider from "./components/snackbar-context/ModalProvider";
 import SnackbarProvider from "./components/modal-context/SnackbarProvider";
 import PageMux from "./components/mackenzies-mind/pages/PageMux";
 import QrCodeProvider from "./components/qr-code-context/QrCodeProvider";
-import TheOtherSide from "./components/the-drinkery/TheOtherSide";
-import TheDrinkerySpecials from "./components/the-drinkery/TheDrinkerySpecials";
+import firebaseAnalyticsClient from "./utils/firebase/FirebaseAnalyticsClient";
 
 export enum RoutesEnum {
     THN = "/the-drinkery/:pageSlug",
@@ -32,6 +31,16 @@ function App() {
     });
 
     const theme = useTheme()
+
+    React.useEffect(() => {
+        const windowUrl = window.location.search;
+        const params:any = new URLSearchParams(windowUrl);
+
+        if(params.has('utm_source') || params.has('utm_medium') || params.has('utm_campaign') || params.has('utm_id')){
+            firebaseAnalyticsClient.utmCodes(params.get('utm_source'), params.get('utm_medium'),params.get('utm_campaign'),params.get('utm_id'))
+        }
+        }, [])
+
     return (
         <BrowserRouter>
             <QueryClientProvider client={queryClient}>

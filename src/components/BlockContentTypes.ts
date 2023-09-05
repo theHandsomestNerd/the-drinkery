@@ -481,7 +481,7 @@ export type DrinkeryOtherSideSectionType = {
 }
 export type DrinkeryPhotoType = {
     imageSrc: SanityImageAsset
-    cols: number
+    cols: string
     title: string
     subtitle: string
 }

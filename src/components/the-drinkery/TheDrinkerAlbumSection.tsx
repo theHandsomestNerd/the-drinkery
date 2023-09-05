@@ -1,14 +1,14 @@
-import React, {FunctionComponent} from 'react'
+import React, {FunctionComponent, useContext} from 'react'
 import {
     Dialog,
     DialogTitle,
     Grid,
-    IconButton,
     ImageList,
     ImageListItem,
     ImageListItemBar,
     makeStyles,
-    Typography, useMediaQuery,
+    Typography,
+    useMediaQuery,
     useTheme
 } from '@material-ui/core'
 import useCustomStyles from "../mackenzies-mind/pages/Styles";
@@ -17,7 +17,8 @@ import TheOtherSideLogo from "./TheOtherSideLogo";
 import {DrinkeryAlbumSectionType} from "../BlockContentTypes";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {Theme} from "@material-ui/core/styles";
-import {Info} from "@material-ui/icons";
+import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import PageContext from "../page-context/PageContext";
 
 interface IProps {
     email?: string
@@ -50,6 +51,8 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
     const theme = useTheme()
     const [open, setOpen] = React.useState(false);
     const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+    const pageContext = useContext(PageContext)
+
 
     const [selectedItem, setSelectedItem] = React.useState<any>(null)
     const handleClickOpen = () => {
@@ -77,7 +80,8 @@ const TheDrinkeryAlbumSection: FunctionComponent<IProps> = (props) => {
                 <Grid item container justifyContent='center'>
                     <ImageList rowHeight={500} className={theClasses.imageList} cols={xsDown?2:3}>
                         {props.sectionData.imageList.map((item, index) => (
-                            <ImageListItem key={index} cols={item.cols || 1} onClick={() => {
+                            <ImageListItem key={index} cols={parseInt(item.cols) || 1} onClick={() => {
+                                firebaseAnalyticsClient.albumImageClick(item.title,item.subtitle, pageContext.analyticsId||"no-id")
                                 setSelectedItem(item)
                                 handleClickOpen()
                             }} style={{cursor: "pointer"}}>

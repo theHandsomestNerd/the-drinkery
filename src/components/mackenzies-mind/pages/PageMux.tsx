@@ -8,6 +8,7 @@ import {Grid} from "@material-ui/core";
 import FourOhFour from "../../transform-hw/pages/error-page/FourOhFour";
 import UnderConstruction from "../../transform-hw/pages/under-construction-page/UnderConstruction";
 import PageLayout from "./PageLayout";
+import firebaseAnalyticsClient from "../../../utils/firebase/FirebaseAnalyticsClient";
 
 interface IProps {
     homePage?: SanityTransformHwHomePage
@@ -20,10 +21,15 @@ const PageMux: FunctionComponent<IProps> = (props: IProps) => {
 
     const urlParams = useParams()
 
+
+
     React.useEffect(() => {
         if (urlParams.pageSlug) {
             console.log("found a slug in the mux", urlParams)
             pageContext.fetchPage && pageContext.fetchPage(urlParams.pageSlug)
+        } else {
+            console.log("did not find a slug in the mux", urlParams)
+            pageContext.fetchPage && pageContext.fetchPage("home")
         }
     },[])
 
