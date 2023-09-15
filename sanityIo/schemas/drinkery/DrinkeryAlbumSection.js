@@ -19,6 +19,13 @@ export default {
             type: 'text',
         },
         {
+            name: 'hashtags',
+            title: 'Hashtags',
+            type: 'array',
+            of: [{type:"string"
+            }]
+        },
+        {
             name: 'isLogo',
             title: 'Show Logo in this section',
             type: 'boolean',

@@ -490,6 +490,7 @@ export type DrinkeryAlbumSectionType = {
     name: string
     isLogo:boolean
     contentPretitle: string
+    hashtags:string[]
     contentTitle: string
     contentText: string
     imageList: DrinkeryPhotoType[]

@@ -29,5 +29,18 @@ export default {
             type: 'string',
         },
 
-    ]
+    ],
+    preview: {
+        select: {
+            title: 'title',
+            media: 'imageSrc',
+            cols:'cols'
+        },
+        prepare(selection) {
+            const {cols} = selection
+            return Object.assign({}, selection, {
+                subtitle: cols,
+            })
+        },
+    },
 }
