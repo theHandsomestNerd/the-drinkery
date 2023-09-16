@@ -88,5 +88,11 @@ export default {
                 hotspot: true,
             },
         },
+        {
+            name: 'hoursOfOperation',
+            title: 'Hours of Operation',
+            type: "array",
+            of: [{type: "scheduleGroup"}]
+        },
     ]
 }

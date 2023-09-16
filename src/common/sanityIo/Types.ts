@@ -45,11 +45,19 @@ export type SanityTransformHwHomePage = {
   fdicImage?: string
   isUnderConstruction?: boolean
   underConstructionPageRef?: SanityRef
-  hoursOfOperation?: SanityGroupSchedule
+  hoursOfOperation?: SanityGroupSchedule[]
 }
 
+export type SanityGroupScheduleEntry = {
+  name:string,
+  dayName:string,
+  isClosed:boolean,
+  startTime:string,
+  endTime:string
+}
 export type SanityGroupSchedule = {
-
+  name:string,
+  hoursOfOperation: SanityGroupScheduleEntry[]
 }
 
 export type SanityBusinessContact = {
@@ -66,6 +74,7 @@ export type SanityBusinessContact = {
   instagramIconSrc?: SanityImageSource
   github?: string
   githubIconSrc?: SanityImageSource
+  hoursOfOperation?: SanityGroupSchedule[]
 }
 
 export type SanityUnderConstructionPageType = {

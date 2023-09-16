@@ -9,6 +9,11 @@ export default {
             type: 'string',
         },
         {
+            name: 'dayName',
+            title: 'Day Name',
+            type: 'string',
+        },
+        {
             name: 'isClosed',
             title: 'Is it closed',
             type: 'boolean',
