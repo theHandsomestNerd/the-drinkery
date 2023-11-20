@@ -53,7 +53,8 @@ export default {
         {name: 'drinkerySpecialsSection', title: 'Drinkery Specials Section', type: 'reference', to: [{type: 'DrinkerySpecialsSection'}]},
         {name: 'drinkeryTeamSection', title: 'Drinkery Staff Section', type: 'reference', to: [{type: 'DrinkeryTeamSection'}]},
         {name: 'drinkeryOtherSideSection', title: 'Drinkery Other Side Section', type: 'reference', to: [{type: 'DrinkeryOtherSideSection'}]},
-        {name: 'drinkeryAlbumSection', title: 'Drinkery Album Section', type: 'reference', to: [{type: 'DrinkeryAlbumSection'}]}
+        {name: 'drinkeryAlbumSection', title: 'Drinkery Album Section', type: 'reference', to: [{type: 'DrinkeryAlbumSection'}]},
+        {name: 'HolidayHeadlineSection', title: 'Holiday Headline Section', type: 'reference', to: [{type: 'HolidayHeadlineSection'}]}
         // {type: "column2BlockContent"},
         // {type: "heroImageNameCareer"},
         // {type: "aboutMe"},

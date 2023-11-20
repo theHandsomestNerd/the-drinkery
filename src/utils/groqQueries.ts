@@ -64,9 +64,6 @@ const HOMEPAGE = `_type,
           isUnderConstruction,
           releaseDate,
           slug,
-          address,
-          email,
-          phone,
           description,
           businessCardImageSrc,
           bookAppointmentLink,
@@ -90,7 +87,30 @@ const HOMEPAGE = `_type,
                },
             }
           },
-          "businessContact": businessContactRef->,
+          "businessContact": businessContactRef->{
+              ...,
+              facebookIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              twitterIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              instagramIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              }
+          },
           pageContent {
             "content": content[]->{
                 ...,
@@ -126,33 +146,7 @@ const HOMEPAGE = `_type,
             ${SERVICE}
           },
           underConstructionPageRef,
-          structuredData,
-          facebook,
-          facebookIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          twitter,
-          twitterIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          instagram,
-          linkedIn,
-          github,
-          instagramIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          }
+          structuredData
 `
 // const MENUGROUP = `
 //           title,

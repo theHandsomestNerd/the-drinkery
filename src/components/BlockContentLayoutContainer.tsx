@@ -6,7 +6,7 @@ import {blockSerializers} from '../common/sanityIo/BlockContentRenderer'
 import {
     DrinkeryAlbumSectionType,
     DrinkeryOtherSideSectionType,
-    DrinkerySpecialsSectionType,
+    DrinkerySpecialsSectionType, HolidayHeadlineSectionType,
     HowItWorksSectionType,
     PortfolioSectionType,
     ResumeBioSectionType,
@@ -59,6 +59,8 @@ import TheDrinkeryStaff from "./the-drinkery/TheDrinkeryStaff";
 import TheDrinkeryOtherSideSection from "./the-drinkery/TheDrinkeryOtherSideSection";
 import TheDrinkeryAlbumSection from "./the-drinkery/TheDrinkerAlbumSection";
 import {SanityTransformHwHomePage} from "../common/sanityIo/Types";
+import clientUtils from "./transform-hw/pages/under-construction-page/clientUtils";
+import HolidayHeadlineSection from "./holiday-headline-section/HolidayHeadlineSection";
 
 export type BlockContentLayoutContainerProps = {
     content?: any,
@@ -365,6 +367,14 @@ const BlockContentLayoutContainer: FunctionComponent<BlockContentLayoutContainer
                         <Link id={"ALBUM_SECTION"}><></></Link>
                         <TheDrinkeryAlbumSection
                             sectionData={drinkeryAlbumSection}
+                        />
+                    </Grid>
+                case 'HolidayHeadlineSection':
+                    const headlineSection: HolidayHeadlineSectionType = columnLayoutContainer
+
+                    return <Grid key={headlineSection.slug.current+'-holiday-headline-section'} container item xs={12} justifyContent='center'>
+                        <HolidayHeadlineSection
+                            sectionData={headlineSection}
                         />
                     </Grid>
                 default:

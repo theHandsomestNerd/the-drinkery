@@ -81,6 +81,7 @@ import DrinkeryAlbumItem from "./drinkery/DrinkeryAlbumItem";
 import BusinessContact from "./businessContact";
 import scheduleEntry from "./drinkery/scheduleEntry";
 import scheduleGroup from "./drinkery/scheduleGroup";
+import HolidayHeadline from "./sections/transform-hw/HolidayHeadlineSection";
 
 // Then we give our schema to the builder and provide the result to Sanity
 export default createSchema({
@@ -172,6 +173,7 @@ export default createSchema({
         DrinkeryAlbumItem,
         BusinessContact,
         scheduleEntry,
-        scheduleGroup
+        scheduleGroup,
+        HolidayHeadline
     ]),
 })

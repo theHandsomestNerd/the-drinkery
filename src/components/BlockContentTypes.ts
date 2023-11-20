@@ -515,3 +515,13 @@ export type DrinkerySpecialType = {
     content: string
     imageSrc: SanityImageAsset
 }
+
+export type HolidayHeadlineSectionType = {
+    name: string
+    slug: SanitySlug
+    contentText: string
+    contentSubtext: string
+    holidayDate: Date
+    holidayIconLeft: string
+    holidayIconRight: string
+}
