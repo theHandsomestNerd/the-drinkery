@@ -10,7 +10,7 @@ import SnackbarContext from "../modal-context/SnackbarContext";
 import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import QrCodeContext from "./QrCodeContext";
 import QRCode from "react-qr-code";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import {useTheme} from '@mui/material/styles';
 
 type IProps = {};
 
@@ -18,6 +18,8 @@ type IProps = {};
 const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
     props: PropsWithChildren<IProps>,
 ) => {
+
+    const theme = useTheme()
     const pageContext = useContext(PageContext)
     const [qrCodeValue, setQrCodeValue] = React.useState<string>("")
 
@@ -39,7 +41,7 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
                     viewBox={`0 0 256 256`}
                 />}
         </Grid>
-            <Grid container item justifyContent='center' style={{marginTop: DigitalResumeTheme.spacing(2)}}>
+            <Grid container item justifyContent='center' style={{marginTop: theme.spacing(2)}}>
 
             <Typography variant='h6'>Share</Typography>
             </Grid>

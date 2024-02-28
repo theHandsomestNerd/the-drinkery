@@ -1,7 +1,6 @@
 import React, {FunctionComponent, useContext} from 'react'
 import PageContext from "../page-context/PageContext";
 import {HolidayHeadlineSectionType} from "../BlockContentTypes";
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import makeStyles from "@mui/styles/makeStyles";
 import { Theme } from '@mui/material/styles';
