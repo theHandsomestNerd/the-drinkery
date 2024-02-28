@@ -4,7 +4,7 @@ import makeStyles from '@mui/styles/makeStyles';
 import {Grid} from '@mui/material'
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
-import logoImg from './thehandsomestNerdlogo-small.png'
+import logoImg from '../templates/the-drinkery/dont-need/drinkery-logo.png'
 import AlternatingText from './AlternatingText';
 
 interface CssProps {
