@@ -1,14 +1,14 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {ServiceAmenityType} from "../BlockContentTypes";
 import AmenityContext from './AmenityContext';
-import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
+import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {v4 as uuidv4} from "uuid";
-import ToolTipWrap from "../transform-hw/ToolTipWrap";
+import ToolTipWrap from "../templates/transform-hw/ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
 import SnackbarContext from "../modal-context/SnackbarContext";
-import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 
 type IProps = {};
 
@@ -69,16 +69,15 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const pageContext = useContext(PageContext)
 
     React.useEffect(() => {
-        console.log("Generating amenities", pageContext.page?.servicesAvailable)
         pageContext.page?.servicesAvailable?.map((service) => {
             const serviceElements = generateAmenitiesElement(service.serviceAmenities, service.slug.current, service.contentTitle)
-            console.log("Generated amenties", serviceElements, service.slug.current)
+            // console.log("Generated amenties", serviceElements, service.slug.current)
             dispatch({type: "ADD_ELEMENTS", payload: {serviceId: service.slug.current, elements: serviceElements}})
         })
     }, [pageContext.page?.servicesAvailable])
 
     const generateAmenitiesElement = (amenities: any[], serviceSlug: string, serviceTitle: string) => {
-        console.log(" generate", serviceSlug, state.serviceId)
+        // console.log(" generate", serviceSlug, state.serviceId)
         // if(serviceSlug === state.serviceId)
         const newElements = amenities?.map((serviceAmenity: ServiceAmenityType) => {
             return <ListItem
@@ -109,7 +108,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                                   minWidth: "32px",
                                   backgroundSize: 'contain',
                                   backgroundPosition: 'center',
-                                  backgroundImage: `url(${urlFor(serviceAmenity.imageSrc).width(32).height(32).url()})`,
+                                  backgroundImage: `url(${serviceAmenity.imageSrc?urlFor(serviceAmenity.imageSrc).width(32).height(32).url():"https://placehold.co/32x32"})`,
                                   backgroundRepeat: "no-repeat",
 
                               }}
@@ -162,7 +161,7 @@ const AmenityProvider: FunctionComponent<IProps & PropsWithChildren> = (
                   alignItems='stretch' wrap={"nowrap"}>
                 <Grid style={{maxWidth: "72px"}} item xs={2} container justifyContent='center'
                       alignContent='center' alignItems='center'>
-                    <ColoredPng size={48} maskUrl={urlFor(amenity.imageSrc).url() ?? ""}
+                    <ColoredPng size={48} maskAsset={amenity.imageSrc}
                                 color={"white"}/>
                 </Grid>
                 <Grid item container alignItems='center' alignContent='center'>

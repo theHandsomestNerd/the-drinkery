@@ -29,18 +29,16 @@ const MENUGROUP = `
 `;
 
 const MENUGROUPCONTAINER = `
-          title,
-          slug,
-          displayText,
           "subMenus":subMenus[]->{
             ${MENUGROUP}
           },
-          logoImageSrc,
-          logoImageAltText
+          ...
 `;
 
 const SERVICE =
-    `name,
+    `
+        ...,
+        name,
         imageSrc,
         imageSrcAltText,
         contentTitle,
@@ -60,13 +58,18 @@ const SERVICE =
 
 
 const HOMEPAGE = `_type,
+          _id,
           title,
           isUnderConstruction,
           releaseDate,
+          backgroundImageSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
           slug,
-          address,
-          email,
-          phone,
           description,
           businessCardImageSrc,
           bookAppointmentLink,
@@ -74,7 +77,41 @@ const HOMEPAGE = `_type,
           website,
           websiteQrCode,
           metaImage,
+          theme->,
+          "businessContact": businessContactRef->{
+              ...
+              address,
+              email,
+              phone,
+              facebook,
+              facebookIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              twitter,
+              twitterIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              },
+              instagram,
+              linkedIn,
+              github,
+              instagramIconSrc{
+                asset->{
+                  _id,
+                  url,
+                  altText
+                 }
+              }
+          },
           headerContent {
+          ...,
             "content": content[]->{
                 ...,
                 headerMenuRef->{
@@ -94,17 +131,17 @@ const HOMEPAGE = `_type,
           pageContent {
             "content": content[]->{
                 ...,
+                "highlightedAmenities": highlightedAmenities[],
                 "servicesList": servicesList[]->{
                     ${SERVICE}
                 },
                 "teamList": teamList[]->,
                 "serviceAmenities": serviceAmenities[]->,
-                "skillsets": skillsets[]{
+                "prosList": prosList[]->,
+                "skillsets": skillsets[]->{
                     ...,
                     "skills": skills[]->{
-                        _id,
-                        name,
-                        title,
+                        ...
                     },
                 }, 
                 "experiences": experiences[]->{
@@ -122,37 +159,12 @@ const HOMEPAGE = `_type,
                 "cvFile": cvFile.asset->
             }
           },
+          isFabActivated,
           "servicesAvailable": servicesAvailable[]->{
             ${SERVICE}
           },
           underConstructionPageRef,
-          structuredData,
-          facebook,
-          facebookIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          twitter,
-          twitterIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          },
-          instagram,
-          linkedIn,
-          github,
-          instagramIconSrc{
-            asset->{
-              _id,
-              url,
-              altText
-             }
-          }
+          structuredData
 `;
 // const MENUGROUP = `
 //           title,

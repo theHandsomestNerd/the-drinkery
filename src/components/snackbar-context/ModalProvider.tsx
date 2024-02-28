@@ -1,14 +1,21 @@
-import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useRef,} from 'react';
-import {Grid, IconButton, List, ListItem, ListItemText, Modal, Typography, useTheme} from "@material-ui/core";
+import React, {FunctionComponent, PropsWithChildren, useMemo, useRef,} from 'react';
+import {
+    Grid,
+    IconButton,
+    List,
+    ListItem,
+    ListItemText,
+    Modal,
+    Typography,
+    useMediaQuery,
+    useTheme
+} from "@mui/material";
 import ModalContext from './ModalContext';
 import {SanityModalType, TextElementType} from "../../common/sanityIo/Types";
 import ColoredPng from "../colored-png/ColoredPng";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
-import {ArrowDropDown, Close} from "@material-ui/icons";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
+import {Close} from "@mui/icons-material";
 import LoadingButton from "../loading-button/LoadingButton";
-import {useIsVerticalOverflow} from "../../utils/useIsVerticalOverflow";
-import {COLORS} from "../../theme/DigitalResumeTheme";
 
 type IProps = {};
 
@@ -18,23 +25,23 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const [modalOpen, setModalOpen] = React.useState<boolean>(false)
     const theme = useTheme()
     const ref: any = useRef(null)
-    const isOverflow = useIsVerticalOverflow(ref, () => {
-    })
+
+    const xsDown = useMediaQuery(theme.breakpoints.down('xs'))
+
     const [modalContent, setModalContent] = React.useState<SanityModalType | undefined>(
         undefined,
     );
 
-    const mediaQueriesContext = useContext(MediaQueriesContext)
     const handleModalClose = (event: React.SyntheticEvent | Event) => {
         setModalOpen(false)
     }
 
-    React.useEffect(() => {
-        console.log("height", ref?.current?.scrollHeight, ref?.current?.clientHeight)
-    }, [ref.current])
+    // React.useEffect(() => {
+    //     console.log("height", ref?.current?.scrollHeight, ref?.current?.clientHeight)
+    // }, [ref.current])
 
     const openModal = (contents?: SanityModalType) => {
-        console.log("Opening modal", contents)
+        // console.log("Opening modal", contents)
         if (!contents) {
             return;
         }
@@ -60,21 +67,24 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                           style={{width: "100%", height: "100%", position: "relative"}}>
 
                         <Grid item container xs={12} sm={9} md={7} style={{
-                            border: `2px solid ${COLORS.DARKBLUE}`,
+                            border: `2px solid black`,
                             // borderRight:`4px solid ${theme.palette.primary.dark}`,
                             backgroundColor: 'rgb(250,250,250,.96)',
                             color: theme.palette.getContrastText(theme.palette.background.paper),
                             padding: theme.spacing(0, 0, 4, 0),
-                            margin: theme.spacing(!mediaQueriesContext.xsDown ? 4 : 0, 0),
+                            margin: theme.spacing(!xsDown ? 4 : 0, 0),
                             maxHeight: "100%",
                             // minHeight: '550px',
-                            overflowY:"scroll",
-                            height: mediaQueriesContext.xsDown ? "100%" : "unset",
+                            overflowY: "scroll",
+                            height: xsDown ? "100%" : "unset",
                             position: "relative"
                         }} justifyContent='center' alignContent={'flex-start'}>
                             <Grid container item justifyContent='flex-end' style={{position: "absolute"}}>
-                                <IconButton color='primary' onClick={() => setModalOpen(false)}
-                                            style={{zIndex: 3, margin: theme.spacing(2.5, 2.5, 0, 0)}}>
+                                <IconButton
+                                    color='primary'
+                                    onClick={() => setModalOpen(false)}
+                                    style={{zIndex: 3, margin: theme.spacing(2.5, 2.5, 0, 0)}}
+                                    size="large">
 
                                     <Close color={'secondary'} fontSize='large'/>
                                 </IconButton>
@@ -88,22 +98,24 @@ const ModalProvider: FunctionComponent<IProps & PropsWithChildren> = (
                             </Grid>
                             <Grid container item justifyContent='center' alignItems='center' alignContent='center'
                                   xs={12}
-                                  // spacing={mediaQueriesContext.smDown ? 2 : 4}
+                                // spacing={smDown ? 2 : 4}
                                   style={{
                                       padding: theme.spacing(10, 1, 0, 1),
                                       zIndex: 2
                                   }}
                             >
-                                <Grid container xs={10} sm={12} item justifyContent='center' alignItems="center" alignContent='center' style={{flexGrow:"1", marginBottom: theme.spacing(2)}}>
+                                <Grid container xs={10} sm={12} item justifyContent='center' alignItems="center"
+                                      alignContent='center' style={{flexGrow: "1", marginBottom: theme.spacing(2)}}>
                                     <Typography variant='h4' align='center'
                                                 color='secondary'>{modalContent?.title}</Typography>
                                 </Grid>
-                                <Grid container item style={{position: "relative", flexGrow:"2"}} justifyContent='center'>
+                                <Grid container item style={{position: "relative", flexGrow: "2"}}
+                                      justifyContent='center'>
                                     <Grid container item xs={12} sm={11}
                                           ref={ref}
 
-                                          style={{maxHeight: mediaQueriesContext.xsDown?"":"600px", overflowY: "scroll", overflowX: "hidden"}}>
-                                        <List style={{marginBottom:"36px"}}>
+                                          style={{maxHeight: xsDown ? "" : "600px", overflowY: "scroll", overflowX: "hidden"}}>
+                                        <List style={{marginBottom: "36px"}}>
                                             {
                                                 modalContent?.contentText.map((faq: TextElementType) => {
                                                     return <ListItem>

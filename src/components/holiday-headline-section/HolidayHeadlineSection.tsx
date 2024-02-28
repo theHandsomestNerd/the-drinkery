@@ -1,11 +1,12 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Box, Grid, Hidden, Typography} from '@material-ui/core'
 import PageContext from "../page-context/PageContext";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
 import {HolidayHeadlineSectionType} from "../BlockContentTypes";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
+import makeStyles from "@mui/styles/makeStyles";
+import { Theme } from '@mui/material/styles';
+import {Box, Grid, Typography, useTheme} from "@mui/material";
+import imagePlaceholderClient from "../../utils/imagePlaceholderClient";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     root: {
@@ -25,16 +26,12 @@ interface IProps {
 }
 
 const HolidayHeadlineSection: FunctionComponent<IProps> = (props) => {
-    const classes = useStyles()
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-
-    const pageContext = useContext(PageContext);
-
+    const theme = useTheme()
     return (
         <Grid container justifyContent='center' item alignContent='center' alignItems='center'
-              style={{padding: "40px", backgroundColor: DigitalResumeTheme.palette.secondary.main}}>
+              style={{padding: "40px"}}>
             <Grid item xs={12} sm={2} container justifyContent='center'>
-                <img  height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={urlFor(props.sectionData?.holidayIconLeft??"").url()??""}/>
+                <img  height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={imagePlaceholderClient.placeholderOrImage(props.sectionData?.holidayIconLeft, 156, 156)}/>
             </Grid>
             <Grid item xs={12} sm={8} container justifyContent='center'>
                 <Grid item>
@@ -49,7 +46,7 @@ const HolidayHeadlineSection: FunctionComponent<IProps> = (props) => {
                 </Grid>
             </Grid>
             <Grid item xs={12} sm={2} container  justifyContent='center' >
-                <Box sx={{ display: { xs: 'none', sm: 'block' } }}><img height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={urlFor(props.sectionData?.holidayIconRight??"").url()??""}/></Box>
+                <Box sx={{ display: { xs: 'none', sm: 'block' } }}><img height={156} width={156} alt={props.sectionData.slug.current + " Icon"} src={imagePlaceholderClient.placeholderOrImage(props.sectionData?.holidayIconRight, 156, 156)}/></Box>
             </Grid>
         </Grid>
     )

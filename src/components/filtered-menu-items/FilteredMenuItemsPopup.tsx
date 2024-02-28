@@ -1,10 +1,10 @@
 import React, {FunctionComponent} from 'react'
-import {Grid, Popover, PropTypes} from '@material-ui/core'
+import {Grid, Popover, PropTypes} from '@mui/material'
 
 import {v4 as uuidv4} from 'uuid'
 import {bindPopover} from "material-ui-popup-state";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
-import SubMenu from "../mackenzies-mind/header/SubMenu";
+import SubMenu from "../templates/mackenzies-mind/header/SubMenu";
 
 interface FilteredMenuItemsPopupProps {
     // uuid:any

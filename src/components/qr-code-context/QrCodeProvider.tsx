@@ -1,13 +1,13 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {ServiceAmenityType} from "../BlockContentTypes";
-import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@material-ui/core";
+import {Grid, ListItem, ListItemIcon, ListItemText, Typography} from "@mui/material";
 import {v4 as uuidv4} from "uuid";
-import ToolTipWrap from "../transform-hw/ToolTipWrap";
+import ToolTipWrap from "../templates/transform-hw/ToolTipWrap";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import PageContext from "../page-context/PageContext";
 import ColoredPng from "../colored-png/ColoredPng";
 import SnackbarContext from "../modal-context/SnackbarContext";
-import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import QrCodeContext from "./QrCodeContext";
 import QRCode from "react-qr-code";
 import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
@@ -45,7 +45,7 @@ const QrCodeProvider: FunctionComponent<IProps & PropsWithChildren> = (
             </Grid>
         </Grid>
 
-        snackbarContext.openSnackbar && await snackbarContext.openSnackbar(snack)
+        snackbarContext.openSnackbar && (await snackbarContext.openSnackbar(snack))
     }
 
     const newValue = useMemo(

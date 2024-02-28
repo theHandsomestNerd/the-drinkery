@@ -1,16 +1,10 @@
-import React, {CSSProperties, FunctionComponent, useContext} from 'react'
+import React, {CSSProperties, FunctionComponent} from 'react'
 import {v4 as uuidv4} from 'uuid'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {Grid} from '@material-ui/core'
-import HeaderMenuItemButton from "../transform-hw/HeaderMenuItemButton";
+import {Grid, useMediaQuery, useTheme} from '@mui/material'
+import HeaderMenuItemButton from "../templates/transform-hw/HeaderMenuItemButton";
 import PopupStateWrapper from "./PopupStateWrapper";
-import {SanityMenuContainer, SanityMenuGroup, SanityMenuItem} from "../../common/sanityIo/Types";
-import PageContext from "../page-context/PageContext";
-import MediaQueriesContext from "../media-queries-context/MediaQueriesContext";
-import {GridJustification} from "@material-ui/core/Grid/Grid";
+import {SanityMenuContainer} from "../../common/sanityIo/Types";
 
-
-export const useStyles = makeStyles((theme: Theme) => ({}))
 
 interface FilteredMenuItemsProps {
     subMenus: SanityMenuContainer[]
@@ -19,36 +13,41 @@ interface FilteredMenuItemsProps {
     onlyButtons?: boolean
     anchorRef?: any
     textStyle?: CSSProperties
-    contentJustification?: GridJustification
+    contentJustification?: any
 }
 
-type HeaderMenuButtonType = {
-    group?: SanityMenuGroup,
-    item?: SanityMenuItem,
-    index: number
-    popup?: (popupState: any) => JSX.Element
-    button: any
-}
+// type HeaderMenuButtonType = {
+//     group?: SanityMenuGroup,
+//     item?: SanityMenuItem,
+//     index: number
+//     popup?: (popupState: any) => JSX.Element
+//     button: any
+// }
 const FilteredMenuItems: FunctionComponent<FilteredMenuItemsProps> = ({
-                                                                 subMenus,
-                                                                 onlyButtons,
-                                                                 includeMenuItems,
-                                                                 includeMenuGroups,
-    textStyle,contentJustification
-                                                             }) => {
-    // const anchorRef = useRef<HTMLButtonElement | null>(null)
-    const mediaQueriesContext = useContext(MediaQueriesContext)
-    return (<Grid item container justifyContent={contentJustification ? contentJustification: (mediaQueriesContext.smDown ? 'flex-start' : 'flex-end')} alignItems='stretch' style={{height: "100%"}}>
+                                                                          subMenus,
+                                                                          onlyButtons,
+                                                                          includeMenuItems,
+                                                                          includeMenuGroups,
+                                                                          textStyle,
+                                                                          contentJustification
+                                                                      }) => {
+    const theme = useTheme()
+    const mdDown = useMediaQuery(theme.breakpoints.down('md'))
+
+    return (<Grid item container
+                  wrap='nowrap'
+                  justifyContent={contentJustification ? contentJustification : (mdDown ? 'flex-start' : 'flex-end')}
+                  alignItems='stretch' alignContent='center'>
             {
                 subMenus?.reduce(
-                    (accumulated: JSX.Element[], menuButton:any, index) => {
+                    (accumulated: JSX.Element[], menuButton: any, index) => {
                         if (menuButton?._type === "menuItem" && (includeMenuItems || (onlyButtons && (menuButton.isOutlinedButton || menuButton.isContainedButton || menuButton.isModalButton)))) {
                             return accumulated.concat([<Grid item key={uuidv4()}>
                                 <HeaderMenuItemButton textStyle={textStyle} menuItem={menuButton}/>
                             </Grid>])
                         } else if (menuButton?._type === "menuGroup" && includeMenuGroups) {
                             return accumulated.concat([<Grid item key={uuidv4()}>
-                                <PopupStateWrapper menuGroup={menuButton} />
+                                <PopupStateWrapper menuGroup={menuButton}/>
                             </Grid>])
                         }
                         return accumulated

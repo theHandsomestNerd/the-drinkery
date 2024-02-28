@@ -20,6 +20,14 @@ export default {
             },
         },
         {
+            name: 'backgroundImageSrc',
+            title: 'Entire Page Background Image',
+            type: 'image',
+            options: {
+                hotspot: true,
+            },
+        },
+        {
             name: 'title',
             title: 'Title(Title in Browser Tab)',
             type: 'string',
@@ -66,7 +74,7 @@ export default {
             type: "array",
             of: [{type: "structuredDataProduct"},
                 {type:"structuredDataEvent"},
-              ]
+            ]
         },
         {
             name: 'headerContent',
@@ -106,6 +114,11 @@ export default {
             to:[{type: 'BusinessContact'}]
         },
         {
+            name: 'isFabActivated',
+            title: 'Is Fab Active',
+            type: 'boolean',
+        },
+        {
             name: 'isUnderConstruction',
             title: 'Is Under Construction',
             type: 'boolean',
@@ -115,6 +128,12 @@ export default {
             title: 'Under Construction Page',
             type: 'reference',
             to:[{type: 'transformUnderConstructionPage'}]
+        },
+        {
+            name: 'theme',
+            title: 'Theme',
+            type: 'reference',
+            to:[{type: 'MuiTheme'}]
         },
     ]
 }

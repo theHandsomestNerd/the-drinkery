@@ -9,6 +9,12 @@ export default {
             type: 'string',
         },
         {
+            name: 'theme',
+            title: 'Theme',
+            type: 'reference',
+            to:[{type: 'MuiTheme'}]
+        },
+        {
             name: 'slug',
             title: 'Slug',
             type: 'slug',
@@ -29,6 +35,26 @@ export default {
             name: 'logoImageAltText',
             title: 'Logo Image Alt Text',
             type: 'string',
+        },
+        {
+            name: 'logoText',
+            title: 'Logo Text',
+            type: 'string',
+        },
+        {
+            name: 'logoAccentText',
+            title: 'Logo Accent Text',
+            type: 'string',
+        },
+        {
+            name: 'isShowSocialMedia',
+            title: 'Show Social Media?',
+            type: 'boolean',
+        },
+        {
+            name: 'isHideOverlay',
+            title: 'Lighten the background',
+            type: 'boolean',
         },
         {
             name: 'subMenus',

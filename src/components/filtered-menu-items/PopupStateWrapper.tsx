@@ -1,12 +1,12 @@
 import React, {FunctionComponent} from 'react'
-import {Button, Grid, Popover, Typography} from '@material-ui/core'
-import DigitalResumeTheme from "../../theme/DigitalResumeTheme";
+import {Button, Grid, Popover, Typography, useTheme} from '@mui/material'
 
 import PopupState, {bindPopover, bindTrigger} from "material-ui-popup-state";
-import {ArrowDropDown} from "@material-ui/icons";
+import {ArrowDropDown} from "@mui/icons-material";
 import {SanityMenuGroup} from "../../common/sanityIo/Types";
-import {makeStyles, Theme} from "@material-ui/core/styles";
-import SubMenu from "../mackenzies-mind/header/SubMenu";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import SubMenu from "../templates/mackenzies-mind/header/SubMenu";
 
 
 const useStyles = makeStyles((theme: Theme) => ({
@@ -25,21 +25,8 @@ interface FilteredMenuItemsPopupProps {
 }
 
 const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menuGroup}) => {
-    const classes = useStyles(DigitalResumeTheme)
-
-    // const [hideOnScroll, setHideOnScroll] = useState(true)
-    // const [backgroundColor, setBackgroundColor] = React.useState<any>("")
-
-
-    // React.useEffect(() => {
-    //     setBackgroundColor(!hideOnScroll && !mdDown ? TransformHWTheme.palette.primary.main : COLORS.TRANSPARENTWHITE)
-    // }, [hideOnScroll,mdDown])
-    //
-    // useScrollPosition(({prevPos, currPos}: any) => {
-    //     const isShow = currPos.y > -100
-    //     if (isShow !== hideOnScroll) setHideOnScroll(isShow)
-    // }, [hideOnScroll,setHideOnScroll])
-
+    const classes = useStyles()
+    const theme = useTheme()
     return (<PopupState variant="popover" popupId={menuGroup.menuGroupTitle?.toLowerCase().replace(" ", "-")}>
         {(popupState) => {
             const handleClose = (e: any) => {
@@ -53,10 +40,10 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                     color={"secondary"}
                     style={{
                         borderRadius: 0,
-                        paddingLeft: DigitalResumeTheme.spacing(2),
-                        paddingRight: DigitalResumeTheme.spacing(3),
+                        paddingLeft: theme.spacing(2),
+                        paddingRight: theme.spacing(3),
                         height: "100%",
-                        color: DigitalResumeTheme.palette.secondary.main
+                        color: theme.palette.secondary.main
                     }}
                     endIcon={<ArrowDropDown></ArrowDropDown>}
                 >
@@ -70,7 +57,7 @@ const PopupStateWrapper: FunctionComponent<FilteredMenuItemsPopupProps> = ({menu
                         style: {
                             borderTopLeftRadius: 0,
                             borderTopRightRadius: 0,
-                            backgroundColor: DigitalResumeTheme.palette.primary.main
+                            backgroundColor: theme.palette.primary.main
                         }
                     }}
                     anchorOrigin={{

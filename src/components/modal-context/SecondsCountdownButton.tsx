@@ -1,7 +1,8 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
-import {CircularProgress, Grid, IconButton, Typography} from '@material-ui/core'
-import {Close} from "@material-ui/icons";
+import { Theme } from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
+import {CircularProgress, Grid, IconButton, Typography} from '@mui/material'
+import {Close} from "@mui/icons-material";
 import SnackbarContext from "./SnackbarContext";
 
 export const useStyles = makeStyles((theme: Theme) => ({
@@ -16,13 +17,14 @@ interface IProps {
 const SecondsCountdownButton: FunctionComponent<IProps> = ({date, totalTimeSeconds}: IProps) => {
     const snackbarContext = useContext(SnackbarContext)
 
-    return (<IconButton
-        aria-label="close"
-        color='secondary'
-        onClick={snackbarContext.handleSnackbarClose}
-    >
-        {
-            <Grid
+    return (
+        <IconButton
+            aria-label="close"
+            color='secondary'
+            onClick={snackbarContext.handleSnackbarClose}
+            size="large">
+            {
+                <Grid
                     item
                     container
                     justifyContent='center'
@@ -51,7 +53,8 @@ const SecondsCountdownButton: FunctionComponent<IProps> = ({date, totalTimeSecon
                         </Grid>
                     </Grid>
                 </Grid>
-        }</IconButton>)
+            }</IconButton>
+    );
 }
 
 export default SecondsCountdownButton

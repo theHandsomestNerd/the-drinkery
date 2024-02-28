@@ -1,17 +1,20 @@
 import React, {FunctionComponent, useContext} from 'react'
-import {makeStyles, Theme} from '@material-ui/core/styles'
-import {Button, Grid, PropTypes, Tooltip, Typography} from '@material-ui/core'
+import { Theme } from '@mui/material/styles';
+import makeStyles from '@mui/styles/makeStyles';
+import {Button, Grid, PropTypes, Tooltip, Typography} from '@mui/material'
 import CssFadeToColor from "../css-fade-to-color/CssFadeToColor";
 import {urlFor} from "../block-content-ui/static-pages/cmsStaticPagesClient";
 import {SanityImageSource} from "@sanity/asset-utils";
 import {CssFadeToColorDirectionEnum} from "../css-fade-to-color/CssFadeToColorDirectionEnum";
 import {ImageWithButtonOverlayAligmentEnum} from "./ImageWithButtonOverlayAligmentEnum";
-import firebaseAnalyticsClient from "../../utils/firebase/FirebaseAnalyticsClient";
+import firebaseAnalyticsClient from "../../common/firebase/FirebaseAnalyticsClient";
 import PageContext from "../page-context/PageContext";
+import {OverridableStringUnion} from "@mui/types";
+import {ButtonPropsColorOverrides} from "@mui/material/Button/Button";
 
 export const useStyles = makeStyles((theme: Theme) => ({
     contentBullets: {
-        marginBottom: theme.spacing(5)
+        marginBottom: "40px"
     }
 }))
 
@@ -29,10 +32,14 @@ interface IProps {
     variant?: 'text' | 'contained' | 'outlined'
     height: number
     buttonAlignment?: ImageWithButtonOverlayAligmentEnum
-    buttonColor?: PropTypes.Color
+    buttonColor?: OverridableStringUnion<
+        'inherit' | 'primary' | 'secondary' | 'success' | 'error' | 'info' | 'warning',
+        ButtonPropsColorOverrides
+    >
     learnMoreLink?: string
     tooltip?: string
     source?: string
+    placeholderWidth?: number
 }
 
 
@@ -49,7 +56,22 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
         }
     }
 
+    const [displayImageUrl, setDisplayImageUrl] = React.useState<string>()
+
+    React.useEffect(() => {
+        if (props.imageUrl) {
+            setDisplayImageUrl(props.imageUrl)
+        }
+        if (props.imageSrc) {
+            setDisplayImageUrl(urlFor(props.imageSrc ?? "").height(props.height).url() ?? '')
+        } else {
+            setDisplayImageUrl(`https://placehold.co/${props.placeholderWidth ?? props.height}x${props.height}`)
+        }
+
+    }, [])
+
     const pageContext = useContext(PageContext)
+
     return (
         <Button fullWidth
                 onClick={(e) => {
@@ -67,17 +89,25 @@ const ImageWIthButtonOverlay: FunctionComponent<IProps> = (props) => {
                                     direction={props.direction}
                                     isResponsive={props.isResponsive}/>}
                 {
-                    <Tooltip
-                        title={<Typography variant='subtitle1'
-                                           style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
-                        <Grid item container style={{
-                            backgroundImage: `url(${props.imageUrl ? props.imageUrl : urlFor(props.imageSrc ?? "").height(props.height).url() ?? ''})`,
+                        props.tooltip ? <Tooltip
+                            title={<Typography variant='subtitle1'
+                                               style={{fontWeight: "normal"}}>{props.tooltip}</Typography>}>
+                            <Grid item container style={{
+                                backgroundImage: `url(${displayImageUrl})`,
+                                backgroundSize: "cover",
+                                backgroundPosition: "center",
+                                backgroundRepeat: "no-repeat",
+                                height: props.height
+                            }}>
+                            </Grid>
+                        </Tooltip> : <Grid item container style={{
+                            backgroundImage: `url(${displayImageUrl})`,
                             backgroundSize: "cover",
                             backgroundPosition: "center",
+                            backgroundRepeat: "no-repeat",
                             height: props.height
                         }}>
                         </Grid>
-                    </Tooltip>
                 }
                 <Grid container
                       item

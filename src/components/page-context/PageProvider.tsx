@@ -1,11 +1,14 @@
 import React, {FunctionComponent, PropsWithChildren, useContext, useMemo, useReducer,} from 'react';
 import {SanityMenuContainer, SanityTransformHwHomePage} from "../../common/sanityIo/Types";
-import thwClient from "../transform-hw/thwClient";
 import {ThwServiceItemNoRefType} from "../BlockContentTypes";
 import PageContext from './PageContext';
 import SnackbarContext from "../modal-context/SnackbarContext";
 import {v4 as uuidv4} from 'uuid'
-type IProps = {};
+import cmsClient from "../block-content-ui/cmsClient";
+type IProps = {
+    page?: SanityTransformHwHomePage
+
+};
 
 type PageProviderState = {
     loading?: boolean,
@@ -26,7 +29,7 @@ const initialState: PageProviderState = {
     isRefetching: false,
     isPageError: false,
     error: undefined,
-    pageSlug: "",
+    pageSlug: "home",
     allServices: [],
     pageHeader: undefined,
     pageFooter: undefined,
@@ -82,25 +85,31 @@ const PageProvider: FunctionComponent<IProps & PropsWithChildren> = (
     const [state, dispatch] = useReducer(reducer, initialState)
 
 
-    const loadedPageQuery = thwClient.useFetchPageBySlugQuery(state.pageSlug)
+    const loadedPageQuery = cmsClient.useFetchPageBySlugQuery(state.pageSlug)
 
     React.useEffect(() => {
-        if (state.analyticsId) {
-            console.log("states analytics changd", state.analyticsId)
-
-        }
-    }, [state.analyticsId])
-    React.useEffect(() => {
-        if ((state.pageSlug && state.pageSlug.length > 0)) {
-            console.log("states pageslug changd", state.pageSlug)
+        if (!props.page && (state.pageSlug && state.pageSlug.length > 0)) {
+            // console.log("states pageslug changd", state.pageSlug)
             loadedPageQuery.refetch().then((resp) => {
-                console.log("reftecth?", resp)
+                // console.log("reftecth?", resp)
             })
         }
     }, [state.pageSlug])
 
     React.useEffect(() => {
-        if (loadedPageQuery.data) {
+        if (props.page && !state.page) {
+            console.log("page came in from storybook or test", props.page)
+            dispatch({
+                type: "LOAD_PAGE_COMPONENTS",
+                payload: {
+                    page: props.page,
+                }
+            })
+        }
+    }, [props.page, state.page])
+
+    React.useEffect(() => {
+        if (!props.page && loadedPageQuery.data) {
             console.log("context homepage data", loadedPageQuery.data)
             dispatch({
                 type: "LOAD_PAGE_COMPONENTS",

@@ -1,31 +1,32 @@
 import React, {FunctionComponent, useContext, useState} from 'react'
-import {makeStyles, Theme} from "@material-ui/core/styles"
+import {Theme} from "@mui/material/styles";
+import makeStyles from '@mui/styles/makeStyles';
 import {
     Avatar,
     Button,
-    createStyles,
     Divider,
     Drawer,
+    Fab,
     Grid,
     List,
     ListItem,
     Typography,
-    useTheme
-} from '@material-ui/core'
-import {Close, FileCopy} from "@material-ui/icons";
-import DigitalResumeTheme, {COLORS} from "../theme/DigitalResumeTheme";
-import ResumeSocialMedia from "./my-digital-resume/ResumeSocialMedia";
+    useMediaQuery,
+    useTheme,
+} from '@mui/material';
+import createStyles from '@mui/styles/createStyles';
+import {Close, FileCopy} from "@mui/icons-material";
+import SocialMediaBlock from "./templates/my-digital-resume/social-media-block/SocialMediaBlock";
 import {urlFor} from "./block-content-ui/static-pages/cmsStaticPagesClient";
-import {MainMenuAnchorType, SanityMenuContainer} from "../common/sanityIo/Types";
-import PageContext from "./page-context/PageContext";
-import Logo from "./transform-hw/logo/Logo";
+import {MainMenuAnchorType, SanityTransformHwHomePage} from "../common/sanityIo/Types";
 import {ResumeBioSectionType} from "./BlockContentTypes";
 import MailTo from "./mail-to/MailTo";
 import QrCodeContext from "./qr-code-context/QrCodeContext";
 import SnackbarContext from "./modal-context/SnackbarContext";
-import BusinessCardSubmitEmail from "./transform-hw/pages/BusinessCardSubmitEmail";
-import firebaseAnalyticsClient from "../utils/firebase/FirebaseAnalyticsClient";
+import BusinessCardSubmitEmail from "./templates/transform-hw/pages/BusinessCardSubmitEmail";
+import firebaseAnalyticsClient from "../common/firebase/FirebaseAnalyticsClient";
 import {useLocation} from "react-router";
+import {COLORS} from "../theme/common/ColorPalette";
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -47,11 +48,12 @@ const useStyles = makeStyles((theme: Theme) =>
 );
 
 interface MainMenuProps {
-    menu: SanityMenuContainer
+    // menu: SanityMenuContainer
+    homePage: SanityTransformHwHomePage
     anchor: MainMenuAnchorType
 }
 
-const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
+const BusinessCard: FunctionComponent<MainMenuProps> = ({anchor, homePage}) => {
     const [isDrawerOpen, setIsDrawerOpen] = useState<boolean>()
 
     const location = useLocation()
@@ -60,7 +62,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             return;
         }
 
-        if(open){
+        if (open) {
             firebaseAnalyticsClient.ctaClick(location.pathname ?? "", "Open Business Card")
         }
 
@@ -68,28 +70,29 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
     };
 
     const snackbarContext = useContext(SnackbarContext)
-    const classes = useStyles(DigitalResumeTheme)
+    const classes = useStyles()
+
     const theme = useTheme()
 
-    const pageContext = useContext(PageContext)
+    const smDown = useMediaQuery(theme.breakpoints.down('sm'))
+
+    // const pageContext = useContext(PageContext)
 
     const [userBio, setUserBio] = React.useState<ResumeBioSectionType>()
 
     React.useEffect(() => {
         //find the bio in pagecontent
-        const bioSection = pageContext.page?.pageContent?.content.filter((content: any) => {
+        const bioSection = homePage.pageContent.content.filter((content: any) => {
             if (content._type === "ResumeBioSection") {
                 return true
             }
             return false
         })
 
-        // console.log("Found bio", bioSection[0])
-        if(bioSection && bioSection[0])
-            setUserBio(bioSection[0])
+        setUserBio(bioSection[0])
 
 
-    }, [pageContext.page?.pageContent])
+    }, [homePage.pageContent])
 
     const qrCodeContext = useContext(QrCodeContext)
     const share = async (url: string) => {
@@ -115,11 +118,11 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                 <Grid item container style={{
                     marginBottom: theme.spacing(4),
                     backgroundRepeat: "none",
-                    minHeight: 250,
+                    minHeight: smDown ? 350 : 450,
                     backgroundSize: "cover",
                     overflow: "visible",
                     position: "relative",
-                    backgroundImage: `url(${urlFor(pageContext.page?.businessCardImageSrc ?? "").url()})`
+                    backgroundImage: `url(${urlFor(homePage.businessCardImageSrc ?? "").url()})`
                 }} justifyContent='center' alignContent='flex-end'>
                     <Grid container item style={{
                         position: "relative",
@@ -127,7 +130,8 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                         height: "max-content",
                         padding: theme.spacing(2, 3)
                     }}>
-                        <ResumeSocialMedia spacing={1} bgColor color='secondary' homePage={pageContext.page}/>
+                        <SocialMediaBlock isCentered spacing={1} iconColor='white' bgColor
+                                          theBackgroundColor={theme.palette.primary.main}  {...homePage.businessContact}/>
                     </Grid>
                 </Grid>
             </Grid>
@@ -151,7 +155,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
                             </Grid>
                             <Grid item xs={9} container justifyContent='flex-end'>
-                                <Typography variant='body2'>{pageContext.page?.businessContact?.phone}</Typography>
+                                <Typography variant='body2'>{homePage.businessContact?.phone}</Typography>
 
                             </Grid>
                         </Grid>
@@ -164,12 +168,12 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
                         </Grid>
                         <Grid item xs={9} container justifyContent='flex-end'>
-                            <MailTo color={theme.palette.primary.main} email={pageContext.page?.businessContact?.email ?? ""}
+                            <MailTo color={theme.palette.primary.main} email={homePage.businessContact?.email ?? ""}
                                     subject={"Information Request"} body={""}>
                                 <Typography color='textPrimary' variant='button'
-                                            align='right'>{pageContext.page?.businessContact?.email}</Typography>
+                                            align='right'>{homePage.businessContact?.email}</Typography>
                             </MailTo>
-                            {/*<Typography variant='body2'>{pageContext.page?.email}</Typography>*/}
+                            {/*<Typography variant='body2'>{homePage.email}</Typography>*/}
                         </Grid>
                     </ListItem>
                     <Divider/>
@@ -178,27 +182,28 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                             <Grid item xs={8} container alignContent='flex-end'>
                                 <Typography variant='h6' gutterBottom>Website</Typography>
                                 <Button variant='outlined' size='small' fullWidth color='primary'
-                                        href={pageContext.page?.website}><Grid style={{height: "48px"}} container
-                                                                               justifyContent='center'
-                                                                               alignContent='center'
-                                                                               alignItems='center'><Grid
+                                        href={homePage.website}><Grid style={{height: "48px"}} container
+                                                                      justifyContent='center'
+                                                                      alignContent='center'
+                                                                      alignItems='center'><Grid
                                     item><Typography
 
                                     variant='subtitle1'
-                                    align='center'>{pageContext.page?.website}</Typography></Grid></Grid></Button>
+                                    align='center'>{homePage.website}</Typography></Grid></Grid></Button>
                             </Grid>
                             <Grid item xs={3} container>
                                 <Grid container item justifyContent='flex-end'>
 
                                     <Grid item xs={2} container justifyContent='flex-end'>
-                                        <Button variant='contained' color='primary' fullWidth onClick={() => {
-                                            navigator.clipboard.writeText(pageContext.page?.website ?? "")
-                                            const snack = <Grid container item>
-                                                Copied!
-                                            </Grid>
+                                        <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(homePage.website ?? "")
+                                                    const snack = <Grid container item>
+                                                        Copied!
+                                                    </Grid>
 
-                                            snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
-                                        }}>
+                                                    snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
+                                                }}>
                                             <Grid item>
                                                 <FileCopy style={{height: "42px"}}/>
                                                 <Typography variant='subtitle1'>Copy</Typography>
@@ -207,10 +212,11 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                     </Grid>
                                     <Grid item xs={2}>
                                         <Button variant='contained' color='primary' fullWidth
-                                                onClick={() => share(pageContext.page?.website ?? "")}>
+                                                style={{height: "80px"}}
+                                                onClick={() => share(homePage.website ?? "")}>
                                             <Grid item>
-                                                <img height={42}
-                                                     src={urlFor(pageContext.page?.websiteQrCode ?? "").url() ?? ""}/>
+                                                <img alt='website QR code' height={42}
+                                                     src={urlFor(homePage.websiteQrCode ?? "").url() ?? ""}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -225,28 +231,29 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                             <Grid item xs={8} container alignContent='flex-end'>
                                 <Typography variant='h6' gutterBottom>Virtual Meeting</Typography>
                                 <Button variant='outlined' size='small' fullWidth color='primary'
-                                        href={pageContext.page?.bookAppointmentLink}><Grid style={{height: "48px"}}
-                                                                                           container
-                                                                                           justifyContent='center'
-                                                                                           alignContent='center'
-                                                                                           alignItems='center'><Grid
+                                        href={homePage.bookAppointmentLink}><Grid style={{height: "48px"}}
+                                                                                  container
+                                                                                  justifyContent='center'
+                                                                                  alignContent='center'
+                                                                                  alignItems='center'><Grid
                                     item><Typography
 
                                     variant='subtitle1'
-                                    align='center'>{pageContext.page?.bookAppointmentLink}</Typography></Grid></Grid></Button>
+                                    align='center'>{homePage.bookAppointmentLink}</Typography></Grid></Grid></Button>
                             </Grid>
                             <Grid item xs={3} container>
                                 <Grid container item justifyContent='flex-end'>
 
                                     <Grid item xs={2} container justifyContent='flex-end'>
-                                        <Button variant='contained' color='primary' fullWidth onClick={() => {
-                                            navigator.clipboard.writeText(pageContext.page?.bookAppointmentLink ?? "")
-                                            const snack = <Grid container item>
-                                                Copied!
-                                            </Grid>
+                                        <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
+                                                onClick={() => {
+                                                    navigator.clipboard.writeText(homePage.bookAppointmentLink ?? "")
+                                                    const snack = <Grid container item>
+                                                        Copied!
+                                                    </Grid>
 
-                                            snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
-                                        }}
+                                                    snackbarContext.openSnackbar && snackbarContext.openSnackbar(snack, 15000)
+                                                }}
                                         >
                                             <Grid item>
                                                 <FileCopy style={{height: "42px"}}/>
@@ -255,11 +262,11 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                                         </Button>
                                     </Grid>
                                     <Grid item xs={2}>
-                                        <Button variant='contained' color='primary' fullWidth
-                                                onClick={() => share(pageContext.page?.bookAppointmentLink ?? "")}>
+                                        <Button style={{height: "80px"}} variant='contained' color='primary' fullWidth
+                                                onClick={() => share(homePage.bookAppointmentLink ?? "")}>
                                             <Grid item>
-                                                <img height={42}
-                                                     src={urlFor(pageContext.page?.bookAppointmentQrCode ?? "").url() ?? ""}/>
+                                                <img alt={'make apppointment qr code'} height={42}
+                                                     src={urlFor(homePage.bookAppointmentQrCode ?? "").url() ?? ""}/>
                                                 <Typography variant='subtitle1'>Qr</Typography>
                                             </Grid>
                                         </Button>
@@ -271,7 +278,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                     <Divider/>
                     <ListItem>
                         <Grid item xs={12}>
-                            <BusinessCardSubmitEmail emailFieldText={'Email Address'}
+                            <BusinessCardSubmitEmail source={'Business Card'} emailFieldText={'Email Address'}
                                                      emailButtonText={'Submit'}
                                                      subscribeText={'Get an email with my contact information below'}/>
                         </Grid>
@@ -297,9 +304,12 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
             {/*                                }*/}
             {/*                            } : undefined}*/}
             {/*                            style={{*/}
-            {/*                                paddingTop: DigitalResumeTheme.spacing(2.25),*/}
-            {/*                                paddingLeft: DigitalResumeTheme.spacing(2),*/}
-            {/*                                paddingBottom: DigitalResumeTheme.spacing(2.25),*/}
+            {/*                                paddingTop: theme
+.spacing(2.25),*/}
+            {/*                                paddingLeft: theme
+.spacing(2),*/}
+            {/*                                paddingBottom: theme
+.spacing(2.25),*/}
             {/*                                height: "100%",*/}
             {/*                                margin: 0*/}
             {/*                            }} fullWidth>*/}
@@ -315,21 +325,20 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
         </Grid>
     );
 
-    return (<Grid item container>
-            <Grid  item container justifyContent='flex-end' style={{padding: theme.spacing(2, 3)}}>
 
-                <Button variant='contained' color='primary' onClick={() => share(pageContext.page?.website ?? "")}>
-                    <Grid container spacing={2} alignItems='center' justifyContent='center'>
-                        <Grid item>
-                            <Avatar variant='square' style={{backgroundColor: "whitesmoke"}} src={urlFor(pageContext.page?.websiteQrCode ?? "").url() ?? ""}/>
-                        </Grid>
-                        {/*<Grid item container justifyContent='center'>*/}
-                        {/*    <Typography align='center' color='secondary' variant='subtitle1'>Share</Typography>*/}
+    return (
+        <Grid item>
 
-                        {/*</Grid>*/}
-                    </Grid>
-                </Button>
-            </Grid>
+            <Fab
+                sx={{position: "absolute", right: 32, bottom: 32}}
+                color='primary'
+                onClick={toggleDrawer(anchor, true)}
+            >
+                <Avatar style={{backgroundColor: "whitesmoke"}}
+
+                        src={urlFor(homePage.headerContent.content[0].headerMenuRef.logoImageSrc ?? "").url() ?? ""}/>
+            </Fab>
+
 
             <Drawer
                 className={classes.drawer}
@@ -341,12 +350,12 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
 
                           position: "absolute",
                           zIndex: 1000,
-                          paddingLeft: DigitalResumeTheme.spacing(4),
-                          paddingRight: DigitalResumeTheme.spacing(6),
+                          paddingLeft: theme.spacing(4),
+                          paddingRight: theme.spacing(6),
                       }}>
 
                     {/*<Grid item xs={3}>*/}
-                    {/*    {menu.logoImageSrc && <Logo logoImageSrc={pageContext.page?.imgSrc}/>}*/}
+                    {/*    {menu.logoImageSrc && <Logo logoImageSrc={homePage.imgSrc}/>}*/}
                     {/*</Grid>*/}
                     <Grid item xs={1}><Button onClick={() => {
                         setIsDrawerOpen(false)
@@ -357,7 +366,7 @@ const BusinessCard: FunctionComponent<MainMenuProps> = ({menu, anchor}) => {
                 </Grid>
             </Drawer>
         </Grid>
-    )
+    );
 }
 
 export default BusinessCard
