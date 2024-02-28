@@ -51,12 +51,12 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                 <Grid item container
                       alignContent='center' alignItems='center' style={{height: "100%", paddingLeft: "8px"}}>
                     <Grid container item xs={4} sm={3} md={3}>
-                        <Grid item xs={8} sm={7} container style={{padding:"8px"}}>
+                        <Grid item xs={9} sm={7} container >
                             <Logo logoImageSrc={props.pageHeader?.logoImageSrc} noWrap
                                   logoText={props.pageHeader?.logoText}
                                   logoAccentText={props.pageHeader?.logoAccentText}/>
                         </Grid>
-                        {props.pageHeader.isShowSocialMedia ?<Grid style={{padding: "8px"}} xs={4} sm={5} container item alignContent='center' alignItems='center'
+                        {props.pageHeader.isShowSocialMedia ?<Grid style={{padding: "8px"}} xs={3} sm={5} container item alignContent='center' alignItems='center'
                                justifyContent={xsDown ? 'center' : "flex-start"} wrap='nowrap'>
                             <IconButton href={`https://facebook.com/${props.businessContact?.facebook}`}
                                         color='primary'><Facebook/></IconButton>
