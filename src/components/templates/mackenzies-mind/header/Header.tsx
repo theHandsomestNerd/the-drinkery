@@ -14,6 +14,12 @@ import makeStyles from "@mui/styles/makeStyles";
 import {Theme} from "@mui/material/styles";
 
 export const useStyles = makeStyles((theme: Theme) => ({
+    socialMedia :{
+        padding: "12px",
+      [theme.breakpoints.down('xs')]:{
+          display: 'none'
+      }
+    },
     hover: {
         "&:hover": {
             backgroundColor: "lightgray !important",
@@ -56,7 +62,8 @@ const Header: FunctionComponent<HeaderProps> = (props) => {
                                   logoText={props.pageHeader?.logoText}
                                   logoAccentText={props.pageHeader?.logoAccentText}/>
                         </Grid>
-                        {props.pageHeader.isShowSocialMedia ?<Grid style={{padding: "8px"}} xs={3} sm={5} container item alignContent='center' alignItems='center'
+
+                        {props.pageHeader.isShowSocialMedia ?<Grid sx={{display: {xs: 'none', sm:'flex'}, }} xs={3} sm={5} container item alignContent='center' alignItems='center'
                                justifyContent={xsDown ? 'center' : "flex-start"} wrap='nowrap'>
                             <IconButton href={`https://facebook.com/${props.businessContact?.facebook}`}
                                         color='primary'><Facebook/></IconButton>

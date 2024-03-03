@@ -103,7 +103,8 @@ const LoadingButton: FunctionComponent<PropsWithChildren<LoadingButtonIProps>> =
     return (
         <Grid item style={{minHeight: "60px", height: "100%", marginRight: "-16px"}}>
             <Button
-                style={{boxShadow: 'none'}}
+
+                style={{boxShadow: 'none', borderWidth: "thin", paddingLeft:"48px", paddingRight: "48x"}}
                 href={props.href}
                 disabled={props.disabled}
                 onClick={props.clickHandler}

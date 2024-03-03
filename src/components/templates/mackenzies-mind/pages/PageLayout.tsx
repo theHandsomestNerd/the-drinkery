@@ -30,7 +30,7 @@ const PageLayout: FunctionComponent<IProps> = (props: IProps) => {
     }, []);
 
     return (
-        <Grid container item style={{width: "100vw"}}>
+        <Grid container item style={{width: "100vw", minWidth: "350px"}}>
             {/*<Grid container item>*/}
             {/*    <Header pageHeader={props.homePage.headerMenuRef}/>*/}
             {/*</Grid>*/}

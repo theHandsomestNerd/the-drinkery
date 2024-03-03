@@ -38,12 +38,10 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
         >
             <Grid container item xs={12} md={4}
                   sx={mdDown ? {
-                      paddingLeft: "16px",
-                      paddingTop: "16px",
-                      paddingBottom: "16px",
                       borderLeft: `4px solid ${theme.palette.primary.main}`,
                       backgroundColor: COLORS.WHITE,
                       borderRight: `4px solid ${theme.palette.primary.main}`,
+                      // width: "500px",
                   } : {}}
                   justifyContent={mdDown ? 'center' : 'flex-start'}
             >
@@ -51,6 +49,7 @@ const FooterMenuContainer: FunctionComponent<IProps> = (props: IProps) => {
                     props.pageFooterMenu?.subMenus?.map((menuGroup: any, index: number) => {
                         return (
                             <Grid key={index} item xs={6} sm={12}
+                                  style={{maxWidth: "550px"}}
                                   md={props.pageFooterMenu?.subMenus?.length === 1 ? 12 : 6} container
                                   justifyContent={mdUp ? 'flex-start' : 'center'}>
                                 <Grid item><FooterMenuGroup menuGroup={menuGroup}/></Grid>

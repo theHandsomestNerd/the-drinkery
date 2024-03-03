@@ -35,6 +35,8 @@ const AppBarWrapper: FunctionComponent<PropsWithChildren<IProps>> = (props: IPro
 
     return (
         props.isAppBar ? <AppBar style={{
+            minWidth: "350px",
+            paddingLeft: "16px",
             backgroundColor: `${props.isAppBar && props.isEnhanced ? "black" : convertToHexCode(props.backgroundColor)}`,
         }} className={classes.root}>
             {props.children}

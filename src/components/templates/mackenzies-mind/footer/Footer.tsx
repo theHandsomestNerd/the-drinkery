@@ -62,6 +62,7 @@ const Footer: FunctionComponent<IProps> = (props: IProps) => {
     return (
         <Grid container
               sx={{
+                  minWidth: "350px",
                   zIndex: 1,
                   // backgroundColor: props.backgroundColor?convertToHexCode(props.backgroundColor):COLORS.LIGHTGRAY,
                   position:"relative"
